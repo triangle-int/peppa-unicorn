@@ -7,5 +7,5 @@ extends Resource
 func pickup(player: Player, item: Item):
 	_on_pickup(player, item)
 
-func _on_pickup(_player: Player, item: Item):
+func _on_pickup(_player: Player, _item: Item):
 	pass

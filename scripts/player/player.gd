@@ -1,5 +1,5 @@
 class_name Player
-extends Node
+extends Node3D
 
 @export var weapon: PlayerShooting
-# TODO : Health or smth
+@export var health: Health

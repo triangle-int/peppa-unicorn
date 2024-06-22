@@ -1,6 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://mvrssal33hq2"]
+[gd_scene load_steps=5 format=3 uid="uid://mvrssal33hq2"]
 
-[ext_resource type="Material" uid="uid://cjd06ta0ihtlh" path="res://materials/prototype_material.tres" id="1_f26ga"]
+[ext_resource type="Texture2D" uid="uid://tw43jnmw6gds" path="res://textures/environment/floor.png" id="1_aqqmm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5y6gg"]
+albedo_texture = ExtResource("1_aqqmm")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_4jxs4"]
 size = Vector3(16, 1, 16)
@@ -8,11 +15,11 @@ size = Vector3(16, 1, 16)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ho3ak"]
 size = Vector3(16, 1, 16)
 
-[node name="Floor16" type="StaticBody3D"]
+[node name="Floor" type="StaticBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-material_override = ExtResource("1_f26ga")
+material_override = SubResource("StandardMaterial3D_5y6gg")
 mesh = SubResource("BoxMesh_4jxs4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

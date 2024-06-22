@@ -15,5 +15,14 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="Floor16" parent="." instance=ExtResource("2_gsdl0")]
 
+[node name="Floor17" parent="." instance=ExtResource("2_gsdl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+
+[node name="Floor18" parent="." instance=ExtResource("2_gsdl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
+
+[node name="Floor19" parent="." instance=ExtResource("2_gsdl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pxyiw")

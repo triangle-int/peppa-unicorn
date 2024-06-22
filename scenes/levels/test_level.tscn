@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b20v3rei234bf"]
+
+[ext_resource type="PackedScene" uid="uid://cnop5virgojgf" path="res://scenes/slayer.tscn" id="1_kbm35"]
+[ext_resource type="PackedScene" uid="uid://mvrssal33hq2" path="res://scenes/geometry/prototype/floor_16.tscn" id="2_gsdl0"]
+
+[sub_resource type="Environment" id="Environment_pxyiw"]
+background_mode = 1
+background_color = Color(0.454524, 0.454524, 0.454524, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="Slayer" parent="." instance=ExtResource("1_kbm35")]
+
+[node name="Floor16" parent="." instance=ExtResource("2_gsdl0")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pxyiw")

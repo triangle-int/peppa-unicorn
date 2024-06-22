@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cjd06ta0ihtlh"]
+
+[ext_resource type="Texture2D" uid="uid://dv24cd6nmd4kl" path="res://addons/godot-prototype-texture/PNG/checker_black_512x512.png" id="1_4leai"]
+
+[resource]
+albedo_texture = ExtResource("1_4leai")
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0

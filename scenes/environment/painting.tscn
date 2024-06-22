@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg5bbht75e2g5"]
+
+[ext_resource type="Texture2D" uid="uid://byd1i0hs0b1uy" path="res://textures/environment/painting.png" id="1_qxde8"]
+
+[node name="Painting" type="Sprite3D"]
+pixel_size = 0.025
+double_sided = false
+texture_filter = 0
+texture = ExtResource("1_qxde8")

@@ -1,20 +1,31 @@
-[gd_scene load_steps=8 format=3 uid="uid://b20v3rei234bf"]
+[gd_scene load_steps=13 format=3 uid="uid://b20v3rei234bf"]
 
 [ext_resource type="PackedScene" uid="uid://cnop5virgojgf" path="res://scenes/slayer.tscn" id="1_kbm35"]
 [ext_resource type="PackedScene" uid="uid://s8kef0o0usau" path="res://scenes/enemy.tscn" id="2_d8oxa"]
-[ext_resource type="PackedScene" uid="uid://mvrssal33hq2" path="res://scenes/geometry/prototype/floor_16.tscn" id="2_gsdl0"]
+[ext_resource type="PackedScene" uid="uid://mvrssal33hq2" path="res://scenes/environment/floor.tscn" id="2_gsdl0"]
 [ext_resource type="PackedScene" uid="uid://ta74dvyvcwur" path="res://scenes/item.tscn" id="4_ubhjr"]
+[ext_resource type="Texture2D" uid="uid://dxvf28fhj52b6" path="res://textures/environment/cieling.png" id="4_uos00"]
 [ext_resource type="PackedScene" uid="uid://c0ob7fqfx2cb6" path="res://scenes/hud.tscn" id="5_ywngn"]
+[ext_resource type="PackedScene" uid="uid://dnold2k2m4yw8" path="res://scenes/environment/wall.tscn" id="6_rpow5"]
+[ext_resource type="PackedScene" uid="uid://dg5bbht75e2g5" path="res://scenes/environment/painting.tscn" id="8_xy616"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xclbc"]
+panorama = ExtResource("4_uos00")
+filter = false
+
+[sub_resource type="Sky" id="Sky_ayeqc"]
+sky_material = SubResource("PanoramaSkyMaterial_xclbc")
 
 [sub_resource type="Environment" id="Environment_pxyiw"]
-background_mode = 1
+background_mode = 2
 background_color = Color(0.454524, 0.454524, 0.454524, 1)
+sky = SubResource("Sky_ayeqc")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_sditw"]
-vertices = PackedVector3Array(7, 0.5, -20.5, 7, 0.5, -20, 7.5, 0.5, -20, 7.5, 0.5, -55.5, -7.5, 0.5, -30.75, -6.25, 0.5, -30.75, -5.5, 0.5, -32, -7.5, 0.5, -55.5, 7.5, 0.5, -55.5, -7.5, 0.5, -55.5, -4.5, 0.5, -32, 7, 0.5, -20.5, -7.5, 0.5, -55.5, -5.5, 0.5, -32, -4.5, 0.5, -32, -6.25, 0.5, -30.25, -6.25, 0.5, -30.75, -7.5, 0.5, -30.75, 7.5, 0.5, -20, 7, 0.5, -20, 6.25, 0.5, -18.75, 7.5, 0.5, 7.5, 5, 0.5, -18.75, 4.75, 0.5, -19.5, -6.25, 0.5, -30.25, -7.5, 0.5, -30.75, -7.5, 0.5, 7.5, 7.5, 0.5, 7.5, 7.5, 0.5, 7.5, 6.25, 0.5, -18.75, 5, 0.5, -18.75)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(14, 13, 12), PackedInt32Array(17, 16, 15), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 21), PackedInt32Array(23, 22, 24), PackedInt32Array(24, 22, 25), PackedInt32Array(25, 22, 26), PackedInt32Array(26, 22, 27), PackedInt32Array(30, 29, 28)]
+vertices = PackedVector3Array(4.5, 0.5, -25, 4.75, 0.5, -24, 7.5, 0.5, -24, 7.5, 0.5, -55.5, -7.5, 0.5, -24, -4.5, 0.5, -24, -4.25, 0.5, -25, -7.5, 0.5, -55.5, -4.25, 0.5, -25, 4.5, 0.5, -25, 7.5, 0.5, -55.5, -7.5, 0.5, -55.5, 7.5, 0.5, -24, 4.75, 0.5, -24, 4.25, 0.5, -22.75, 7.5, 0.5, 7.5, -4.25, 0.5, -22.75, -4.5, 0.5, -24, -7.5, 0.5, -24, -7.5, 0.5, 7.5, 4.25, 0.5, -22.75, -4.25, 0.5, -22.75, -7.5, 0.5, 7.5, 7.5, 0.5, 7.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(20, 23, 21), PackedInt32Array(21, 23, 22)]
 agent_height = 2.0
 
 [node name="TestLevel" type="Node3D"]
@@ -33,13 +44,16 @@ environment = SubResource("Environment_pxyiw")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_sditw")
 
+[node name="Wall" parent="NavigationRegion3D" instance=ExtResource("6_rpow5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -24)
+
+[node name="Wall2" parent="NavigationRegion3D" instance=ExtResource("6_rpow5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -24)
+
 [node name="Floor16" parent="NavigationRegion3D" instance=ExtResource("2_gsdl0")]
 
 [node name="Floor17" parent="NavigationRegion3D" instance=ExtResource("2_gsdl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
-
-[node name="Floor20" parent="NavigationRegion3D" instance=ExtResource("2_gsdl0")]
-transform = Transform3D(0.707107, -0.707107, 3.09086e-08, 0, -4.37114e-08, -1, 0.707107, 0.707107, -3.09086e-08, 0, -5, -25)
 
 [node name="Floor18" parent="NavigationRegion3D" instance=ExtResource("2_gsdl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
@@ -49,3 +63,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
 
 [node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_ywngn")]
 player = NodePath("../Slayer")
+
+[node name="Painting" parent="." instance=ExtResource("8_xy616")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.286, 2, -23.49)

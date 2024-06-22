@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnop5virgojgf"]
+[gd_scene load_steps=9 format=3 uid="uid://cnop5virgojgf"]
 
 [ext_resource type="Texture2D" uid="uid://c5tuiy30uk3xe" path="res://icon.svg" id="1_ephvi"]
 [ext_resource type="Script" path="res://scripts/player/player_movement.gd" id="1_ng5jo"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_n5v5e"]
 [ext_resource type="Script" path="res://scripts/player/camera_look.gd" id="3_dr4i7"]
 [ext_resource type="Script" path="res://scripts/player/player_shooting.gd" id="4_hu5qv"]
+[ext_resource type="SpriteFrames" uid="uid://dbvdagrnrefrm" path="res://textures/weapons/shotgun/shotgun_animation.tres" id="6_a4v0s"]
+[ext_resource type="Script" path="res://scripts/player/weapon_display.gd" id="7_v8atl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2imdl"]
 
@@ -32,3 +34,11 @@ script = ExtResource("4_hu5qv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 pixel_size = 0.005
 texture = ExtResource("1_ephvi")
+
+[node name="WeaponDisplay" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(576, 401)
+scale = Vector2(4.5, 4.5)
+sprite_frames = ExtResource("6_a4v0s")
+animation = &"idle"
+script = ExtResource("7_v8atl")

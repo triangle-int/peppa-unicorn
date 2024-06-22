@@ -12,7 +12,7 @@
 script = ExtResource("1_ng5jo")
 player = NodePath("Player")
 
-[node name="Player" type="Node" parent="." node_paths=PackedStringArray("weapon")]
+[node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("weapon")]
 script = ExtResource("2_n5v5e")
 weapon = NodePath("../Camera3D/ShootingPoint")
 

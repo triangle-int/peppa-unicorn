@@ -1,0 +1,70 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://1o1vco0b4vjx"]
+
+[ext_resource type="Texture2D" uid="uid://bp4cuaqdjxti7" path="res://textures/enemies/unicorn/unicorn.png" id="1_e0043"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_be5hs"]
+atlas = ExtResource("1_e0043")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nm4u"]
+atlas = ExtResource("1_e0043")
+region = Rect2(0, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xl57"]
+atlas = ExtResource("1_e0043")
+region = Rect2(80, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q7nj"]
+atlas = ExtResource("1_e0043")
+region = Rect2(0, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n05hu"]
+atlas = ExtResource("1_e0043")
+region = Rect2(80, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkt2v"]
+atlas = ExtResource("1_e0043")
+region = Rect2(160, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgeqy"]
+atlas = ExtResource("1_e0043")
+region = Rect2(240, 160, 80, 80)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_be5hs")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nm4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xl57")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q7nj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n05hu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkt2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgeqy")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]

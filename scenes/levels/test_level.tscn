@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b20v3rei234bf"]
 
 [ext_resource type="PackedScene" uid="uid://cnop5virgojgf" path="res://scenes/slayer.tscn" id="1_kbm35"]
-[ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="2_d8oxa"]
+[ext_resource type="PackedScene" uid="uid://s8kef0o0usau" path="res://scenes/enemy.tscn" id="2_d8oxa"]
 [ext_resource type="PackedScene" uid="uid://mvrssal33hq2" path="res://scenes/geometry/prototype/floor_16.tscn" id="2_gsdl0"]
 [ext_resource type="PackedScene" uid="uid://ta74dvyvcwur" path="res://scenes/item.tscn" id="4_ubhjr"]
 

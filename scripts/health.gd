@@ -8,8 +8,9 @@ signal on_health_updated(health: int)
 
 var health: int
 
-func _init():
+func _ready():
 	health = start_health
+	on_health_updated.emit(health)
 
 func deal_damage(damage: int):
 	# TODO: Remove this

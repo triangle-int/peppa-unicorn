@@ -18,23 +18,17 @@ func _on_idle_state_physics_processing(_delta: float):
 		break
 
 func _is_player_in_sight(player: Player) -> bool:
-	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(
+	var hit = RayCast.cast(
+		self,
 		global_position,
 		player.global_position,
+		func(obj): return obj as PlayerMovement
 	)
-	query.exclude = [self]
-	var result = space_state.intersect_ray(query)
 
-	if result.is_empty():
+	if hit == null:
 		return false
 
-	var player_movement = result.collider as PlayerMovement
-
-	if player_movement == null:
-		return false
-
-	return player_movement.player == player
+	return hit.collider.player == player
 
 func _on_walking_state_physics_processing(delta: float):
 	if player_detected == null:

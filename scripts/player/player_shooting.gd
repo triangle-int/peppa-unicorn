@@ -34,24 +34,15 @@ func shoot():
 	for i in range(rounds_per_shot):
 		var direction = Math.random_vector_in_unit_cone(forward, deg_to_rad(spread_angle))
 		DebugDraw3D.draw_ray(global_position, direction, 10, Color.RED, INF)
-		var hit = shoot_single(global_position, direction)
+		var hit = RayCast.cast(
+			self,
+			global_position,
+			global_position + direction * RAY_LENGTH,
+			func(obj): return obj as Damageable
+		)
 
-		if !hit.is_empty():
+		if hit != null:
 			hit.collider.deal_damage(1)
-
-func shoot_single(origin: Vector3, direction: Vector3) -> Dictionary:
-	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(
-		origin,
-		origin + direction * RAY_LENGTH,
-	)
-	query.exclude = [self]
-	var result = space_state.intersect_ray(query)
-
-	if result.is_empty() or !("deal_damage" in result.collider):
-		return {}
-
-	return result
 
 func update_ammo(ammo: int):
 	current_ammo = ammo

@@ -3,7 +3,9 @@ extends Node3D
 
 const RAY_LENGTH = 1000
 
-signal on_ammo_updated(ammo: int)
+signal on_ammo_updated(current_ammo_in_magazine: int, ammo: int)
+signal on_reload
+signal on_shoot
 
 @export var rounds_per_shot: int = 12
 @export var max_ammo_in_magazine: int = 2
@@ -11,26 +13,34 @@ signal on_ammo_updated(ammo: int)
 @export var start_ammo: int = 8
 @export var spread_angle: float = 30
 
+var current_ammo_in_magazine: int
 var current_ammo: int
 
 
 func _init():
 	update_ammo(start_ammo)
+	update_ammo_in_magazine(max_ammo_in_magazine)
 
 func _input(event: InputEvent):
-	if !event.is_action_pressed("shoot"):
-		return
-
-	shoot()
+	if event.is_action_pressed("shoot"):
+		shoot()
+	if event.is_action_pressed("reload"):
+		reload()
 
 func shoot():
-	if current_ammo <= 0:
+	if not $ShootTimer.is_stopped():
+		return
+	
+	if current_ammo_in_magazine <= 0:
 		# TODO : IDK do something that indicates that there's 0 ammo
 		return
 
-	update_ammo(current_ammo - 1)
+	update_ammo_in_magazine(current_ammo_in_magazine - 1)
 	var forward = -global_transform.basis.z
-
+	
+	on_shoot.emit()
+	$ShootTimer.start()
+	
 	for i in range(rounds_per_shot):
 		var direction = Math.random_vector_in_unit_cone(forward, deg_to_rad(spread_angle))
 		DebugDraw3D.draw_ray(global_position, direction, 10, Color.RED, INF)
@@ -46,4 +56,19 @@ func shoot():
 
 func update_ammo(ammo: int):
 	current_ammo = ammo
-	on_ammo_updated.emit(current_ammo)
+	on_ammo_updated.emit(current_ammo_in_magazine, current_ammo)
+
+func update_ammo_in_magazine(ammo: int):
+	current_ammo_in_magazine = ammo
+	on_ammo_updated.emit(current_ammo_in_magazine, current_ammo)
+
+func reload():
+	if current_ammo <= 0:
+		return
+	
+	on_reload.emit()
+	$ReloadTimer.start()
+	await $ReloadTimer.timeout
+	
+	current_ammo_in_magazine = min(max_ammo_in_magazine, current_ammo)
+	current_ammo -= current_ammo_in_magazine

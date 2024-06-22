@@ -54,7 +54,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -78,9 +78,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_46sdm")
 }],
-"loop": true,
+"loop": false,
 "name": &"reload",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -92,7 +92,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u8wcf")
 }],
-"loop": true,
+"loop": false,
 "name": &"shoot",
-"speed": 5.0
+"speed": 6.0
 }]

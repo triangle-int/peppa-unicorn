@@ -20,7 +20,6 @@ func _input(event):
 		$"..".rotate_y(deg_to_rad(input_x))
 		
 		var input_y = -event.relative.y * sensitivity_y
-		print(camera_x)
 		if camera_x + input_y < max_angle and camera_x + input_y > min_angle:
 			camera_x += input_y
 			self.rotate_x(deg_to_rad(input_y))

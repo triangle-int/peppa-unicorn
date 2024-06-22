@@ -23,6 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 script = ExtResource("3_dr4i7")
 
 [node name="ShootingPoint" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0024085, 0.0039525, 0.00128865)
 script = ExtResource("4_hu5qv")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

@@ -3,8 +3,8 @@ extends CharacterBody3D
 
 @export var speed: float = 5.0
 @export var acceleration: float = 20.0
-
 @export var agent: NavigationAgent3D
+@export var health: Health
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -29,3 +29,7 @@ func move_towards(delta: float, target: Vector3):
 func stop_moving(delta: float):
 	velocity.x = move_toward(velocity.x, 0, acceleration * delta)
 	velocity.z = move_toward(velocity.z, 0, acceleration * delta)
+
+# This is absolutely horrific but this language doesn't allow interfaces
+func deal_damage(damage: int):
+	health.deal_damage(damage)

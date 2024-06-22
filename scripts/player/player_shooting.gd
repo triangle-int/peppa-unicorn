@@ -38,7 +38,7 @@ func shoot():
 			self,
 			global_position,
 			global_position + direction * RAY_LENGTH,
-			func(obj): return obj as Damageable
+			func(obj): return obj if "deal_damage" in obj else null
 		)
 
 		if hit != null:

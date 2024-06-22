@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://yn2qoav4ln0y"]
+[gd_scene load_steps=13 format=3 uid="uid://yn2qoav4ln0y"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy_movement.gd" id="1_daklo"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="1_q08st"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="2_1lewq"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="2_u3xqx"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="3_2fmxk"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_weapon.gd" id="3_gwb4b"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="3_o4wgx"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="4_p5s80"]
+[ext_resource type="PackedScene" uid="uid://eld0sr7x5gik" path="res://scenes/projectile.tscn" id="4_xjogy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gucsi"]
 
@@ -14,9 +17,10 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_oh7pn"]
 radius = 10.0
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("agent")]
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("agent", "health")]
 script = ExtResource("1_daklo")
 agent = NodePath("NavigationAgent3D")
+health = NodePath("Health")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_gucsi")
@@ -26,11 +30,21 @@ mesh = SubResource("CapsuleMesh_7vao1")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="AI" type="Node3D" parent="." node_paths=PackedStringArray("state_chart", "movement")]
+[node name="AI" type="Node3D" parent="." node_paths=PackedStringArray("state_chart", "movement", "weapon")]
 script = ExtResource("2_u3xqx")
 state_chart = NodePath("../StateChart")
 movement = NodePath("..")
+weapon = NodePath("../Weapon")
 attack_range = 5.0
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_2fmxk")
+start_health = 100
+
+[node name="Weapon" type="Node3D" parent="." node_paths=PackedStringArray("movement")]
+script = ExtResource("3_gwb4b")
+movement = NodePath("..")
+projectile_scene = ExtResource("4_xjogy")
 
 [node name="PlayerDetectionArea" type="Area3D" parent="."]
 

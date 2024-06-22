@@ -1,8 +1,8 @@
 extends Node3D
 
 @export var state_chart: StateChart
-@export var state_root: CompoundState
 @export var movement: EnemyMovement
+@export var weapon: EnemyWeapon
 @export var attack_range: float
 
 var player_detected: Player
@@ -47,10 +47,8 @@ func _on_non_walking_state_physics_processing(delta: float):
 	movement.stop_moving(delta)
 
 func _on_shooting_state_entered():
-	# TODO : Actual attack
-	print("Attacking!")
-	await get_tree().create_timer(1).timeout
-	print("Finished!")
+	weapon.shoot((player_detected.global_position - global_position).normalized())
+	await weapon.finished_shooting
 	state_chart.send_event("finished_shooting")
 
 func _on_player_detection_area_body_entered(body: Node3D):

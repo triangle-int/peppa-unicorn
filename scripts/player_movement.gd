@@ -8,6 +8,8 @@ extends CharacterBody3D
 ## How fast player will lose their velocity in the air
 @export_range(0.0, 1.0, 0.01) var air_friction = 0.02
 
+@export var contr_direction_multiplier = 10.0
+
 @export var jump_velocity = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -40,7 +42,14 @@ func _physics_process(delta):
 	else:
 		velocity_to_add *= air_acceleration * delta
 	
-	velocity.x += velocity_to_add.x
-	velocity.z += velocity_to_add.z
+	var contr_multiplier_x = 1.0
+	if (velocity.x < 0 and velocity_to_add.x > 0) or (velocity.x > 0 and velocity_to_add.x < 0):
+		contr_multiplier_x = contr_direction_multiplier
+	var contr_multiplier_z = 1.0
+	if (velocity.z < 0 and velocity_to_add.z > 0) or (velocity.z > 0 and velocity_to_add.z < 0):
+		contr_multiplier_z = contr_direction_multiplier
+	
+	velocity.x += velocity_to_add.x * contr_multiplier_x
+	velocity.z += velocity_to_add.z * contr_multiplier_z
 
 	move_and_slide()

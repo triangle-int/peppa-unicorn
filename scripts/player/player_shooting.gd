@@ -1,5 +1,7 @@
 extends Node3D
 
+class_name PlayerShooting
+
 const RAY_LENGTH = 1000
 
 signal on_ammo_updated(ammo: int)

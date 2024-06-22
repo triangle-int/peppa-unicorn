@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cytx6k64f3ykm"]
+
+[ext_resource type="Script" path="res://scripts/items/weapon_item.gd" id="1_aubps"]
+
+[resource]
+script = ExtResource("1_aubps")
+rounds = 10

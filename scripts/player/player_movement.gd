@@ -1,4 +1,7 @@
+class_name PlayerMovement
 extends CharacterBody3D
+
+@export var player: Player
 
 @export var floor_acceleration = 50.0
 @export var air_acceleration = 20.0

@@ -1,7 +1,5 @@
-extends Object
-
 class_name Math
-
+extends Object
 
 static func random_vector_in_unit_cone(direction: Vector3, angle: float) -> Vector3:
 	var dir_z = direction

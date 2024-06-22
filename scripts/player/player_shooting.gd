@@ -1,3 +1,4 @@
+class_name PlayerShooting
 extends Node3D
 
 const RAY_LENGTH = 1000

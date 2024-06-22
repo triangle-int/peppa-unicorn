@@ -1,6 +1,5 @@
-extends CharacterBody3D
-
 class_name PlayerMovement
+extends CharacterBody3D
 
 @export var player: Player
 

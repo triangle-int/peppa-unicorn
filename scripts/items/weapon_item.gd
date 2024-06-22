@@ -8,5 +8,5 @@ func _on_pickup(player: Player, item: Item):
 	if not should_pickup:
 		return
 
-	player.weapon.current_ammo = min(player.weapon.current_ammo + rounds, player.weapon.max_ammo)
+	player.weapon.update_ammo(min(player.weapon.current_ammo + rounds, player.weapon.max_ammo))
 	item.queue_free()

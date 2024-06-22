@@ -1,5 +1,5 @@
-extends Node
 class_name Item
+extends Node
 
 @export var info: ItemInfo
 

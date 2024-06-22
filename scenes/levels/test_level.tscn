@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b20v3rei234bf"]
+[gd_scene load_steps=8 format=3 uid="uid://b20v3rei234bf"]
 
 [ext_resource type="PackedScene" uid="uid://cnop5virgojgf" path="res://scenes/slayer.tscn" id="1_kbm35"]
 [ext_resource type="PackedScene" uid="uid://s8kef0o0usau" path="res://scenes/enemy.tscn" id="2_d8oxa"]
 [ext_resource type="PackedScene" uid="uid://mvrssal33hq2" path="res://scenes/geometry/prototype/floor_16.tscn" id="2_gsdl0"]
 [ext_resource type="PackedScene" uid="uid://ta74dvyvcwur" path="res://scenes/item.tscn" id="4_ubhjr"]
+[ext_resource type="PackedScene" uid="uid://c0ob7fqfx2cb6" path="res://scenes/hud.tscn" id="5_ywngn"]
 
 [sub_resource type="Environment" id="Environment_pxyiw"]
 background_mode = 1
@@ -45,3 +46,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
 
 [node name="Floor19" parent="NavigationRegion3D" instance=ExtResource("2_gsdl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+
+[node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_ywngn")]
+player = NodePath("../Slayer")

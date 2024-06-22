@@ -24,6 +24,7 @@ func _init():
 func _input(event: InputEvent):
 	if event.is_action_pressed("shoot"):
 		shoot()
+
 	if event.is_action_pressed("reload"):
 		reload()
 
@@ -70,5 +71,6 @@ func reload():
 	$ReloadTimer.start()
 	await $ReloadTimer.timeout
 	
-	current_ammo_in_magazine = min(max_ammo_in_magazine, current_ammo)
-	current_ammo -= current_ammo_in_magazine
+	var added = min(max_ammo_in_magazine - current_ammo_in_magazine, current_ammo)
+	update_ammo(current_ammo - added)
+	update_ammo_in_magazine(current_ammo_in_magazine + added)

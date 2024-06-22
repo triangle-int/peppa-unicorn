@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://yn2qoav4ln0y"]
+[gd_scene load_steps=10 format=3 uid="uid://yn2qoav4ln0y"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy_movement.gd" id="1_daklo"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="1_q08st"]
@@ -10,6 +10,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gucsi"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7vao1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oh7pn"]
+radius = 10.0
 
 [node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("agent")]
 script = ExtResource("1_daklo")
@@ -23,10 +26,16 @@ mesh = SubResource("CapsuleMesh_7vao1")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="AI" type="Node" parent="." node_paths=PackedStringArray("state_chart", "movement")]
+[node name="AI" type="Node3D" parent="." node_paths=PackedStringArray("state_chart", "movement")]
 script = ExtResource("2_u3xqx")
 state_chart = NodePath("../StateChart")
 movement = NodePath("..")
+attack_range = 5.0
+
+[node name="PlayerDetectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionArea"]
+shape = SubResource("SphereShape3D_oh7pn")
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("1_q08st")
@@ -38,7 +47,7 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateChart/Root"]
 script = ExtResource("3_o4wgx")
 
-[node name="PlayerInRange" type="Node" parent="StateChart/Root/Idle"]
+[node name="PlayerInSight" type="Node" parent="StateChart/Root/Idle"]
 script = ExtResource("4_p5s80")
 to = NodePath("../../Walking")
 event = &"player_in_sight"
@@ -47,7 +56,7 @@ delay_in_seconds = "0.0"
 [node name="Walking" type="Node" parent="StateChart/Root"]
 script = ExtResource("3_o4wgx")
 
-[node name="Transition" type="Node" parent="StateChart/Root/Walking"]
+[node name="PlayerInRange" type="Node" parent="StateChart/Root/Walking"]
 script = ExtResource("4_p5s80")
 to = NodePath("../../Shooting")
 event = &"player_in_range"
@@ -56,12 +65,16 @@ delay_in_seconds = "0.0"
 [node name="Shooting" type="Node" parent="StateChart/Root"]
 script = ExtResource("3_o4wgx")
 
-[node name="Transition" type="Node" parent="StateChart/Root/Shooting"]
+[node name="FinishedShooting" type="Node" parent="StateChart/Root/Shooting"]
 script = ExtResource("4_p5s80")
 to = NodePath("../../Walking")
 event = &"finished_shooting"
 delay_in_seconds = "0.0"
 
+[connection signal="body_entered" from="PlayerDetectionArea" to="AI" method="_on_player_detection_area_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionArea" to="AI" method="_on_player_detection_area_body_exited"]
+[connection signal="state_physics_processing" from="StateChart/Root/Idle" to="AI" method="_on_non_walking_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Idle" to="AI" method="_on_idle_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Walking" to="AI" method="_on_walking_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Shooting" to="AI" method="_on_shooting_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Shooting" to="AI" method="_on_non_walking_state_physics_processing"]

@@ -8,6 +8,7 @@ extends CharacterBody3D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var is_moving := false
 
 func _physics_process(delta: float):
 	# Add the gravity.
@@ -24,3 +25,7 @@ func move_towards(delta: float, target: Vector3):
 
 	velocity.x = move_toward(velocity.x, direction.x * speed, acceleration * delta)
 	velocity.z = move_toward(velocity.z, direction.z * speed, acceleration * delta)
+
+func stop_moving(delta: float):
+	velocity.x = move_toward(velocity.x, 0, acceleration * delta)
+	velocity.z = move_toward(velocity.z, 0, acceleration * delta)

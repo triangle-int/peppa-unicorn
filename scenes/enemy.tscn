@@ -1,14 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://yn2qoav4ln0y"]
+[gd_scene load_steps=15 format=3 uid="uid://s8kef0o0usau"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy_movement.gd" id="1_daklo"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="1_q08st"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="2_1lewq"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_ai.gd" id="2_u3xqx"]
+[ext_resource type="SpriteFrames" uid="uid://1o1vco0b4vjx" path="res://textures/enemies/unicorn/unicorn_animation.tres" id="2_x8r0q"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="3_2fmxk"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_weapon.gd" id="3_gwb4b"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="3_o4wgx"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_animation.gd" id="3_vape8"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="4_p5s80"]
-[ext_resource type="PackedScene" uid="uid://eld0sr7x5gik" path="res://scenes/projectile.tscn" id="4_xjogy"]
+[ext_resource type="PackedScene" path="res://scenes/projectile.tscn" id="4_xjogy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gucsi"]
 
@@ -26,7 +28,17 @@ health = NodePath("Health")
 shape = SubResource("CapsuleShape3D_gucsi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_7vao1")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.213777, 0)
+billboard = 2
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("2_x8r0q")
+animation = &"idle"
+script = ExtResource("3_vape8")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
@@ -87,8 +99,10 @@ delay_in_seconds = "0.0"
 
 [connection signal="body_entered" from="PlayerDetectionArea" to="AI" method="_on_player_detection_area_body_entered"]
 [connection signal="body_exited" from="PlayerDetectionArea" to="AI" method="_on_player_detection_area_body_exited"]
-[connection signal="state_physics_processing" from="StateChart/Root/Idle" to="AI" method="_on_non_walking_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/Root/Idle" to="AI" method="_on_idle_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/Idle" to="AI" method="_on_non_walking_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Walking" to="AnimatedSprite3D" method="_on_walking_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Walking" to="AI" method="_on_walking_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Shooting" to="AI" method="_on_shooting_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Shooting" to="AnimatedSprite3D" method="_on_shooting_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Shooting" to="AI" method="_on_non_walking_state_physics_processing"]

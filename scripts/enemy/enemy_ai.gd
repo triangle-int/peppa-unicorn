@@ -1,8 +1,8 @@
 extends Node3D
 
 @export var state_chart: StateChart
-@export var state_root: CompoundState
 @export var movement: EnemyMovement
+@export var weapon: EnemyWeapon
 @export var attack_range: float
 
 var player_detected: Player
@@ -18,23 +18,17 @@ func _on_idle_state_physics_processing(_delta: float):
 		break
 
 func _is_player_in_sight(player: Player) -> bool:
-	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(
+	var hit = RayCast.cast(
+		self,
 		global_position,
 		player.global_position,
+		func(obj): return obj as PlayerMovement
 	)
-	query.exclude = [self]
-	var result = space_state.intersect_ray(query)
 
-	if result.is_empty():
+	if hit == null:
 		return false
 
-	var player_movement = result.collider as PlayerMovement
-
-	if player_movement == null:
-		return false
-
-	return player_movement.player == player
+	return hit.collider.player == player
 
 func _on_walking_state_physics_processing(delta: float):
 	if player_detected == null:
@@ -53,10 +47,8 @@ func _on_non_walking_state_physics_processing(delta: float):
 	movement.stop_moving(delta)
 
 func _on_shooting_state_entered():
-	# TODO : Actual attack
-	print("Attacking!")
-	await get_tree().create_timer(1).timeout
-	print("Finished!")
+	weapon.shoot((player_detected.global_position - global_position).normalized())
+	await weapon.finished_shooting
 	state_chart.send_event("finished_shooting")
 
 func _on_player_detection_area_body_entered(body: Node3D):

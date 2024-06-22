@@ -56,3 +56,7 @@ func _physics_process(delta):
 	velocity.z += velocity_to_add.z * contr_multiplier_z
 
 	move_and_slide()
+
+# This is absolutely horrific but this language doesn't allow interfaces
+func deal_damage(damage: int):
+	player.health.deal_damage(damage)

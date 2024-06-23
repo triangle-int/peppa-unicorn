@@ -11,7 +11,8 @@ signal on_shoot
 @export var max_ammo_in_magazine: int = 2
 @export var max_ammo: int = 32
 @export var start_ammo: int = 8
-@export var spread_angle: float = 30
+@export var spread_angle: float = 6
+@export var damage: int = 5
 
 var current_ammo_in_magazine: int
 var current_ammo: int
@@ -44,7 +45,7 @@ func shoot():
 	
 	for i in range(rounds_per_shot):
 		var direction = Math.random_vector_in_unit_cone(forward, deg_to_rad(spread_angle))
-		DebugDraw3D.draw_ray(global_position, direction, 10, Color.RED, INF)
+		DebugDraw3D.draw_ray(global_position, direction, 10, Color.RED, 5)
 		var hit = RayCast.cast(
 			self,
 			global_position,
@@ -53,7 +54,7 @@ func shoot():
 		)
 
 		if hit != null:
-			hit.collider.deal_damage(1)
+			hit.collider.deal_damage(damage)
 
 func update_ammo(ammo: int):
 	current_ammo = ammo

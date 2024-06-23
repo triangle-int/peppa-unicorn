@@ -2,6 +2,7 @@ class_name PlayerMovement
 extends CharacterBody3D
 
 @export var player: Player
+@export var hook: PlayerHook
 
 @export var floor_acceleration = 50.0
 @export var air_acceleration = 20.0
@@ -29,6 +30,10 @@ func _ready():
 	_jump_velocity = sqrt(2 * gravity * jump_height)
 
 func _physics_process(delta):
+	if hook.is_hooked():
+		move_and_slide()
+		return
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -59,7 +64,7 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
 	var velocity_to_add = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
+
 	if is_on_floor():
 		velocity_to_add *= floor_acceleration * delta
 	else:
@@ -71,7 +76,7 @@ func _physics_process(delta):
 	var contr_multiplier_z = 1.0
 	if (velocity.z < 0 and velocity_to_add.z > 0) or (velocity.z > 0 and velocity_to_add.z < 0):
 		contr_multiplier_z = contr_direction_multiplier
-	
+
 	velocity.x += velocity_to_add.x * contr_multiplier_x
 	velocity.z += velocity_to_add.z * contr_multiplier_z
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b20v3rei234bf"]
+[gd_scene load_steps=20 format=3 uid="uid://b20v3rei234bf"]
 
 [ext_resource type="PackedScene" uid="uid://cnop5virgojgf" path="res://scenes/slayer.tscn" id="1_kbm35"]
 [ext_resource type="PackedScene" uid="uid://s8kef0o0usau" path="res://scenes/enemy.tscn" id="2_d8oxa"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dg5bbht75e2g5" path="res://scenes/environment/painting.tscn" id="8_xy616"]
 [ext_resource type="PackedScene" uid="uid://bduvsj300mv85" path="res://scenes/environment/bed.tscn" id="10_0qjfh"]
 [ext_resource type="PackedScene" uid="uid://c5wpdv2xdnc2q" path="res://scenes/environment/barrel.tscn" id="10_42snb"]
+[ext_resource type="PackedScene" uid="uid://67dvn3g62ato" path="res://scenes/environment/hook_target.tscn" id="15_k4llr"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xclbc"]
 panorama = ExtResource("4_uos00")
@@ -124,3 +125,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
 
 [node name="Floor19" parent="Environment/NavigationRegion3D" instance=ExtResource("2_gsdl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+
+[node name="HookTarget" parent="." instance=ExtResource("15_k4llr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 4.5, -45.5)
+
+[node name="HookTarget2" parent="." instance=ExtResource("15_k4llr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 4.5, -45.5)

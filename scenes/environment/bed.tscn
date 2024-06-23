@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bduvsj300mv85"]
+
+[ext_resource type="Script" path="res://scripts/environment/bed.gd" id="1_edsvt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6bvmi"]
+size = Vector3(1.2, 0.5, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lirhl"]
+size = Vector3(1.2, 0.5, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e1tlv"]
+size = Vector3(1.2, 0.5, 3)
+
+[node name="Bed" type="StaticBody3D"]
+script = ExtResource("1_edsvt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_6bvmi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_lirhl")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_e1tlv")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -16,6 +16,7 @@
 [node name="Slayer" type="CharacterBody3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_ng5jo")
 player = NodePath("Player")
+jump_height = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

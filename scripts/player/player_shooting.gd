@@ -32,14 +32,14 @@ func _input(event: InputEvent):
 func shoot():
 	if not $ShootTimer.is_stopped():
 		return
-	
+
 	if current_ammo_in_magazine <= 0:
 		# TODO : IDK do something that indicates that there's 0 ammo
 		return
 
 	update_ammo_in_magazine(current_ammo_in_magazine - 1)
 	var forward = -global_transform.basis.z
-	
+
 	on_shoot.emit()
 	$ShootTimer.start()
 	
@@ -65,13 +65,13 @@ func update_ammo_in_magazine(ammo: int):
 	on_ammo_updated.emit(current_ammo_in_magazine, current_ammo)
 
 func reload():
-	if current_ammo <= 0:
+	if current_ammo <= 0 or current_ammo_in_magazine >= max_ammo_in_magazine:
 		return
-	
+
 	on_reload.emit()
 	$ReloadTimer.start()
 	await $ReloadTimer.timeout
-	
+
 	var added = min(max_ammo_in_magazine - current_ammo_in_magazine, current_ammo)
 	update_ammo(current_ammo - added)
 	update_ammo_in_magazine(current_ammo_in_magazine + added)

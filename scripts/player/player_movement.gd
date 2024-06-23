@@ -13,11 +13,16 @@ extends CharacterBody3D
 
 @export var contr_direction_multiplier = 10.0
 
-@export var jump_velocity = 4.5
+@export var jump_height = 1.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var _jump_velocity: float
+
+
+func _ready():
+	_jump_velocity = sqrt(2 * gravity * jump_height)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -26,7 +31,7 @@ func _physics_process(delta):
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_velocity
+		velocity.y = _jump_velocity
 	
 	# Applying friction
 	if is_on_floor():

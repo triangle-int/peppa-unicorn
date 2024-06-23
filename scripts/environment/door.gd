@@ -1,6 +1,7 @@
 extends Node
 
 @export var key_id: String
+@export var always_open: bool
 @export var open_position: Vector3
 @export var wall: Node3D
 @export var movement_speed: float
@@ -22,7 +23,7 @@ func _on_area_3d_body_entered(body: Node3D):
 	if movement == null:
 		return
 
-	if !movement.player.keys.has_key(key_id):
+	if !always_open and !movement.player.keys.has_key(key_id):
 		return
 
 	_player_in_area = true

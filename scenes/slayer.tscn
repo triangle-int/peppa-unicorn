@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cnop5virgojgf"]
+[gd_scene load_steps=12 format=3 uid="uid://cnop5virgojgf"]
 
 [ext_resource type="Texture2D" uid="uid://c5tuiy30uk3xe" path="res://icon.svg" id="1_ephvi"]
 [ext_resource type="Script" path="res://scripts/player/player_movement.gd" id="1_ng5jo"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_n5v5e"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="3_4lwox"]
+[ext_resource type="Script" path="res://scripts/player/player_health.gd" id="3_4ydkt"]
 [ext_resource type="Script" path="res://scripts/player/camera_look.gd" id="3_dr4i7"]
 [ext_resource type="Script" path="res://scripts/player/player_shooting.gd" id="4_hu5qv"]
 [ext_resource type="Script" path="res://scripts/player/player_keys.gd" id="4_q033g"]
@@ -16,6 +17,10 @@
 script = ExtResource("1_ng5jo")
 player = NodePath("Player")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_2imdl")
+
 [node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("weapon", "health", "keys")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("2_n5v5e")
@@ -23,15 +28,13 @@ weapon = NodePath("../Camera3D/ShootingPoint")
 health = NodePath("../Health/Health")
 keys = NodePath("../Keys")
 
-[node name="Health" type="Node3D" parent="."]
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("3_4ydkt")
+health = NodePath("Health")
 
 [node name="Health" type="Node" parent="Health"]
 script = ExtResource("3_4lwox")
 start_health = 100
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_2imdl")
 
 [node name="Keys" type="Node" parent="."]
 script = ExtResource("4_q033g")

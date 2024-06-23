@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Peppa Unicorn"
-run/main_scene="res://scenes/levels/test_level.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+LevelLoader="*res://scenes/autloads/level_loader.tscn"
 
 [editor_plugins]
 

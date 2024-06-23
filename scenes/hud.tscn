@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0ob7fqfx2cb6"]
+[gd_scene load_steps=3 format=3 uid="uid://c0ob7fqfx2cb6"]
 
 [ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_rc1c2"]
+[ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="2_b5sm6"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -42,3 +43,58 @@ theme_override_font_sizes/font_size = 72
 text = "500"
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="PauseMenu" type="Control" parent="." node_paths=PackedStringArray("panel")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_b5sm6")
+panel = NodePath("Panel")
+
+[node name="Panel" type="Panel" parent="PauseMenu"]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="PauseMenu/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -125.0
+offset_right = 150.0
+offset_bottom = -5.00006
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "resume"
+
+[node name="Restart" type="Button" parent="PauseMenu/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 5.0
+offset_right = 150.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "restart"
+
+[connection signal="pressed" from="PauseMenu/Panel/Resume" to="PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/Panel/Restart" to="PauseMenu" method="_on_restart_pressed"]

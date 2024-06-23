@@ -23,10 +23,3 @@ func _input(event):
 		if camera_x + input_y < max_angle and camera_x + input_y > min_angle:
 			camera_x += input_y
 			self.rotate_x(deg_to_rad(input_y))
-	
-	# TODO: make pause
-	if event.is_action_pressed("pause"):
-		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

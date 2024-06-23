@@ -51,6 +51,12 @@ player = NodePath("../Slayer")
 
 [node name="Environment" type="Node3D" parent="."]
 
+[node name="HookTarget" parent="Environment" instance=ExtResource("15_k4llr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 4.5, -45.5)
+
+[node name="HookTarget2" parent="Environment" instance=ExtResource("15_k4llr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 4.5, -45.5)
+
 [node name="Painting" parent="Environment" instance=ExtResource("8_xy616")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -23.49)
 
@@ -125,9 +131,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
 
 [node name="Floor19" parent="Environment/NavigationRegion3D" instance=ExtResource("2_gsdl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
-
-[node name="HookTarget" parent="." instance=ExtResource("15_k4llr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 4.5, -45.5)
-
-[node name="HookTarget2" parent="." instance=ExtResource("15_k4llr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 4.5, -45.5)

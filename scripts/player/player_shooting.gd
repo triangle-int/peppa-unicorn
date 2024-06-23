@@ -45,7 +45,7 @@ func shoot():
 	
 	for i in range(rounds_per_shot):
 		var direction = Math.random_vector_in_unit_cone(forward, deg_to_rad(spread_angle))
-		DebugDraw3D.draw_ray(global_position, direction, 10, Color.RED, 5)
+		# DebugDraw3D.draw_ray(global_position, direction, 10, Color.RED, 5)
 		var hit = RayCast.cast(
 			self,
 			global_position,

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b20v3rei234bf"]
+[gd_scene load_steps=19 format=3 uid="uid://b20v3rei234bf"]
 
 [ext_resource type="PackedScene" uid="uid://cnop5virgojgf" path="res://scenes/slayer.tscn" id="1_kbm35"]
 [ext_resource type="PackedScene" uid="uid://s8kef0o0usau" path="res://scenes/enemy.tscn" id="2_d8oxa"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://cytx6k64f3ykm" path="res://items/ammo.tres" id="8_1mb50"]
 [ext_resource type="PackedScene" uid="uid://dg5bbht75e2g5" path="res://scenes/environment/painting.tscn" id="8_xy616"]
 [ext_resource type="PackedScene" uid="uid://bduvsj300mv85" path="res://scenes/environment/bed.tscn" id="10_0qjfh"]
+[ext_resource type="PackedScene" uid="uid://c5wpdv2xdnc2q" path="res://scenes/environment/barrel.tscn" id="10_42snb"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xclbc"]
 panorama = ExtResource("4_uos00")
@@ -66,6 +67,9 @@ key_id = "red_key"
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Environment"]
 navigation_mesh = SubResource("NavigationMesh_sditw")
+
+[node name="Barrel" parent="Environment/NavigationRegion3D" instance=ExtResource("10_42snb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, -36)
 
 [node name="Bed" parent="Environment/NavigationRegion3D" instance=ExtResource("10_0qjfh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.25, -10)

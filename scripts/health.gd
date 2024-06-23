@@ -13,8 +13,6 @@ func _ready():
 	on_health_updated.emit(health)
 
 func deal_damage(damage: int):
-	# TODO: Remove this
-	print("Received %d damage" % damage)
 	health -= damage
 
 	if health <= 0:

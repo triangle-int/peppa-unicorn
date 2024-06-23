@@ -5,3 +5,4 @@
 [resource]
 script = ExtResource("1_aubps")
 rounds = 10
+name = ""

@@ -4,6 +4,7 @@ extends Node
 
 var _last_level: int
 
+
 func load_level(level_index: int):
 	var level = levels[level_index]
 	_last_level = level_index

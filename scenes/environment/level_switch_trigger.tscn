@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://thafqip6h08"]
+
+[ext_resource type="Script" path="res://scripts/environment/level_switch_trigger.gd" id="1_s58hp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2p0yl"]
+size = Vector3(4, 4, 4)
+
+[node name="LevelSwitchTrigger" type="Area3D"]
+script = ExtResource("1_s58hp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_2p0yl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

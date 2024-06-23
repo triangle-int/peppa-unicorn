@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://b20v3rei234bf"]
+[gd_scene load_steps=17 format=3 uid="uid://b20v3rei234bf"]
 
 [ext_resource type="PackedScene" uid="uid://cnop5virgojgf" path="res://scenes/slayer.tscn" id="1_kbm35"]
 [ext_resource type="PackedScene" uid="uid://s8kef0o0usau" path="res://scenes/enemy.tscn" id="2_d8oxa"]
 [ext_resource type="PackedScene" uid="uid://mvrssal33hq2" path="res://scenes/environment/floor.tscn" id="2_gsdl0"]
 [ext_resource type="PackedScene" uid="uid://ta74dvyvcwur" path="res://scenes/item.tscn" id="4_ubhjr"]
 [ext_resource type="Texture2D" uid="uid://dxvf28fhj52b6" path="res://textures/environment/cieling.png" id="4_uos00"]
+[ext_resource type="PackedScene" uid="uid://thafqip6h08" path="res://scenes/environment/level_switch_trigger.tscn" id="5_84iqa"]
 [ext_resource type="PackedScene" uid="uid://c0ob7fqfx2cb6" path="res://scenes/hud.tscn" id="5_ywngn"]
 [ext_resource type="PackedScene" uid="uid://dnold2k2m4yw8" path="res://scenes/environment/wall.tscn" id="6_rpow5"]
 [ext_resource type="PackedScene" uid="uid://b7wcpg8rqqcff" path="res://scenes/environment/door.tscn" id="7_1x4wm"]
@@ -36,7 +37,7 @@ agent_height = 2.0
 [node name="Slayer" parent="." instance=ExtResource("1_kbm35")]
 
 [node name="Enemy" parent="." instance=ExtResource("2_d8oxa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -40)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -36)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pxyiw")
@@ -45,6 +46,16 @@ environment = SubResource("Environment_pxyiw")
 player = NodePath("../Slayer")
 
 [node name="Environment" type="Node3D" parent="."]
+
+[node name="LevelSwitchRoom" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -42)
+
+[node name="Door" parent="Environment/LevelSwitchRoom" instance=ExtResource("7_1x4wm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
+key_id = "red_key"
+
+[node name="LevelSwitchTrigger" parent="Environment/LevelSwitchRoom" instance=ExtResource("5_84iqa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Painting" parent="Environment" instance=ExtResource("8_xy616")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -23.49)

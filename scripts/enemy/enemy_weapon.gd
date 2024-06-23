@@ -12,7 +12,7 @@ func shoot(direction: Vector3):
 	projectile.direction = direction
 	projectile.creator = movement
 
-	get_tree().root.add_child(projectile)
+	get_tree().current_scene.add_child(projectile)
 	projectile.global_position = global_position
 
 	await get_tree().create_timer(1).timeout

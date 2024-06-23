@@ -11,5 +11,5 @@ func _ready():
 
 func _on_damaged(_health: int):
 	var node = damage_particles.instantiate()
-	get_tree().root.add_child(node)
+	get_tree().current_scene.add_child(node)
 	node.global_position = global_position

@@ -17,6 +17,10 @@
 script = ExtResource("1_ng5jo")
 player = NodePath("Player")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_2imdl")
+
 [node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("weapon", "health", "keys")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("2_n5v5e")
@@ -24,17 +28,13 @@ weapon = NodePath("../Camera3D/ShootingPoint")
 health = NodePath("../Health/Health")
 keys = NodePath("../Keys")
 
-[node name="Health" type="Node3D" parent="." node_paths=PackedStringArray("health")]
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("health")]
 script = ExtResource("3_4ydkt")
 health = NodePath("Health")
 
 [node name="Health" type="Node" parent="Health"]
 script = ExtResource("3_4lwox")
 start_health = 100
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_2imdl")
 
 [node name="Keys" type="Node" parent="."]
 script = ExtResource("4_q033g")

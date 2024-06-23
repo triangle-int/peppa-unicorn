@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cnop5virgojgf"]
+[gd_scene load_steps=14 format=3 uid="uid://cnop5virgojgf"]
 
 [ext_resource type="Texture2D" uid="uid://c5tuiy30uk3xe" path="res://icon.svg" id="1_ephvi"]
 [ext_resource type="Script" path="res://scripts/player/player_movement.gd" id="1_ng5jo"]
@@ -10,12 +10,18 @@
 [ext_resource type="Script" path="res://scripts/player/player_keys.gd" id="4_q033g"]
 [ext_resource type="SpriteFrames" uid="uid://dbvdagrnrefrm" path="res://textures/weapons/shotgun/shotgun_animation.tres" id="6_a4v0s"]
 [ext_resource type="Script" path="res://scripts/player/weapon_display.gd" id="7_v8atl"]
+[ext_resource type="Script" path="res://scripts/player/player_hook.gd" id="8_fo5bn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2imdl"]
 
-[node name="Slayer" type="CharacterBody3D" node_paths=PackedStringArray("player")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_67x8a"]
+radius = 20.0
+
+[node name="Slayer" type="CharacterBody3D" node_paths=PackedStringArray("player", "hook")]
 script = ExtResource("1_ng5jo")
 player = NodePath("Player")
+hook = NodePath("Camera3D/Hook")
+jump_height = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -54,6 +60,16 @@ one_shot = true
 [node name="ReloadTimer" type="Timer" parent="Camera3D/ShootingPoint"]
 one_shot = true
 
+[node name="Hook" type="Area3D" parent="Camera3D" node_paths=PackedStringArray("character")]
+script = ExtResource("8_fo5bn")
+character = NodePath("../..")
+speed = 20.0
+unhook_distance = 5.0
+hook_angle = 15.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/Hook"]
+shape = SubResource("SphereShape3D_67x8a")
+
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 pixel_size = 0.005
@@ -69,3 +85,5 @@ script = ExtResource("7_v8atl")
 
 [connection signal="on_reload" from="Camera3D/ShootingPoint" to="WeaponDisplay" method="_on_shooting_point_on_reload"]
 [connection signal="on_shoot" from="Camera3D/ShootingPoint" to="WeaponDisplay" method="_on_shooting_point_on_shoot"]
+[connection signal="body_entered" from="Camera3D/Hook" to="Camera3D/Hook" method="_on_body_entered"]
+[connection signal="body_exited" from="Camera3D/Hook" to="Camera3D/Hook" method="_on_body_exited"]

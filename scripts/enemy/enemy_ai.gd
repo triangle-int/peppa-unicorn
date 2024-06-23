@@ -8,6 +8,7 @@ extends Node3D
 var player_detected: Player
 var players_in_radius: Array[Player]
 
+
 func _on_idle_state_physics_processing(_delta: float):
 	for player in players_in_radius:
 		if !_is_player_in_sight(player):

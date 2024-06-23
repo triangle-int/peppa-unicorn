@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqkqo3vckdne4"]
+
+[ext_resource type="Script" path="res://scripts/effects/damage_particles.gd" id="1_wros0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ab0u5"]
+albedo_color = Color(1, 0, 0, 1)
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_m1dd1"]
+material = SubResource("StandardMaterial3D_ab0u5")
+size = Vector2(0.2, 0.2)
+
+[node name="DamageParticles" type="CPUParticles3D"]
+amount = 500
+lifetime = 5.0
+one_shot = true
+mesh = SubResource("QuadMesh_m1dd1")
+direction = Vector3(0, 1, 0)
+spread = 30.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+script = ExtResource("1_wros0")

@@ -9,6 +9,7 @@ func _ready():
 	health.on_health_updated.connect(_on_damaged)
 	health.on_died.connect(func(): movement.queue_free())
 
+
 func _on_damaged(_health: int):
 	var node = damage_particles.instantiate()
 	get_tree().current_scene.add_child(node)

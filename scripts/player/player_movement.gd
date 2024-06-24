@@ -29,6 +29,7 @@ var _wall_jump_done := false
 func _ready():
 	_jump_velocity = sqrt(2 * gravity * jump_height)
 
+
 func _physics_process(delta):
 	if hook.is_hooked():
 		move_and_slide()
@@ -42,13 +43,17 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = _jump_velocity
 
-	if Input.is_action_just_pressed("jump")\
-	and is_on_wall()\
-	and not is_on_floor()\
-	and !_wall_jump_done:
+	if (
+		Input.is_action_just_pressed("jump")
+		and is_on_wall()
+		and not is_on_floor()
+		and !_wall_jump_done
+	):
 		_wall_jump_done = true
 		var normal = get_wall_normal()
-		var jump_dir = normal.rotated(normal.cross(Vector3.UP).normalized(), deg_to_rad(wall_jump_angle))
+		var jump_dir = normal.rotated(
+			normal.cross(Vector3.UP).normalized(), deg_to_rad(wall_jump_angle)
+		)
 		velocity.y = 0
 		velocity += jump_dir * wall_jump_speed
 
@@ -57,7 +62,7 @@ func _physics_process(delta):
 		_wall_jump_done = false
 		velocity.x *= 1 - floor_friction
 		velocity.z *= 1 - floor_friction
-	else: 
+	else:
 		velocity.x *= 1 - air_friction
 		velocity.z *= 1 - air_friction
 
@@ -81,6 +86,7 @@ func _physics_process(delta):
 	velocity.z += velocity_to_add.z * contr_multiplier_z
 
 	move_and_slide()
+
 
 # This is absolutely horrific but this language doesn't allow interfaces
 func deal_damage(damage: int):

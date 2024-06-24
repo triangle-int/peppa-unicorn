@@ -75,15 +75,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 pixel_size = 0.005
 texture = ExtResource("1_ephvi")
 
-[node name="WeaponDisplay" type="AnimatedSprite2D" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="WeaponDisplay" type="AnimatedSprite2D" parent="MarginContainer"]
 texture_filter = 1
-position = Vector2(576, 401)
+position = Vector2(0, -247)
 scale = Vector2(4.5, 4.5)
 sprite_frames = ExtResource("6_a4v0s")
 animation = &"idle"
 script = ExtResource("7_v8atl")
 
-[connection signal="on_reload" from="Camera3D/ShootingPoint" to="WeaponDisplay" method="_on_shooting_point_on_reload"]
-[connection signal="on_shoot" from="Camera3D/ShootingPoint" to="WeaponDisplay" method="_on_shooting_point_on_shoot"]
+[connection signal="on_reload" from="Camera3D/ShootingPoint" to="MarginContainer/WeaponDisplay" method="_on_shooting_point_on_reload"]
+[connection signal="on_shoot" from="Camera3D/ShootingPoint" to="MarginContainer/WeaponDisplay" method="_on_shooting_point_on_shoot"]
 [connection signal="body_entered" from="Camera3D/Hook" to="Camera3D/Hook" method="_on_body_entered"]
 [connection signal="body_exited" from="Camera3D/Hook" to="Camera3D/Hook" method="_on_body_exited"]

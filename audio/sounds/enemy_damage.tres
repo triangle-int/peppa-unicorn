@@ -1,0 +1,13 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://dcwk2ml2vhpko"]
+
+[ext_resource type="AudioStream" uid="uid://cq3k71miemeim" path="res://audio/sounds/enemy_damage_1.mp3" id="1_0wbqo"]
+[ext_resource type="AudioStream" uid="uid://caq6elpnh5m41" path="res://audio/sounds/enemy_damage_2.mp3" id="2_oihkr"]
+
+[resource]
+playback_mode = 1
+random_pitch = 1.5
+streams_count = 2
+stream_0/stream = ExtResource("1_0wbqo")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_oihkr")
+stream_1/weight = 1.0

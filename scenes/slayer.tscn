@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnop5virgojgf"]
+[gd_scene load_steps=16 format=3 uid="uid://cnop5virgojgf"]
 
 [ext_resource type="Texture2D" uid="uid://c5tuiy30uk3xe" path="res://icon.svg" id="1_ephvi"]
 [ext_resource type="Script" path="res://scripts/player/player_movement.gd" id="1_ng5jo"]
@@ -11,6 +11,9 @@
 [ext_resource type="SpriteFrames" uid="uid://dbvdagrnrefrm" path="res://textures/weapons/shotgun/shotgun_animation.tres" id="6_a4v0s"]
 [ext_resource type="Script" path="res://scripts/player/weapon_display.gd" id="7_v8atl"]
 [ext_resource type="Script" path="res://scripts/player/player_hook.gd" id="8_fo5bn"]
+[ext_resource type="AudioStream" uid="uid://coeumodlmhobx" path="res://audio/sounds/shotgun_shot.wav" id="12_rnk5c"]
+[ext_resource type="Script" path="res://scripts/player/shotgun_sound.gd" id="13_qvugk"]
+[ext_resource type="AudioStream" uid="uid://tmv21i6evnw8" path="res://audio/sounds/shotgun_reload.mp3" id="14_fpiow"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2imdl"]
 
@@ -87,5 +90,19 @@ sprite_frames = ExtResource("6_a4v0s")
 animation = &"idle"
 script = ExtResource("7_v8atl")
 
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+
+[node name="ShotgunSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("12_rnk5c")
+max_polyphony = 2
+script = ExtResource("13_qvugk")
+
+[node name="ReloadSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("14_fpiow")
+max_polyphony = 2
+script = ExtResource("13_qvugk")
+
 [connection signal="on_reload" from="Camera3D/ShootingPoint" to="MarginContainer/WeaponDisplay" method="_on_shooting_point_on_reload"]
+[connection signal="on_reload" from="Camera3D/ShootingPoint" to="ReloadSound" method="_on_shooting_point_on_shoot"]
 [connection signal="on_shoot" from="Camera3D/ShootingPoint" to="MarginContainer/WeaponDisplay" method="_on_shooting_point_on_shoot"]
+[connection signal="on_shoot" from="Camera3D/ShootingPoint" to="ShotgunSound" method="_on_shooting_point_on_shoot"]

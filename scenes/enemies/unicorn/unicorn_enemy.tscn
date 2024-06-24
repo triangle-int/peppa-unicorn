@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://s8kef0o0usau"]
+[gd_scene load_steps=13 format=3 uid="uid://s8kef0o0usau"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy_movement.gd" id="1_e8lc6"]
 [ext_resource type="SpriteFrames" uid="uid://1o1vco0b4vjx" path="res://textures/enemies/unicorn/unicorn_animation.tres" id="2_7uj0q"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://scripts/health.gd" id="7_tifvw"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_weapon.gd" id="8_sd0p6"]
 [ext_resource type="PackedScene" uid="uid://eld0sr7x5gik" path="res://scenes/projectile.tscn" id="9_smydo"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_damage_sound.gd" id="10_k3yy0"]
+[ext_resource type="AudioStream" uid="uid://dcwk2ml2vhpko" path="res://audio/sounds/enemy_damage.tres" id="10_lrh7k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gucsi"]
 
@@ -53,8 +55,12 @@ movement = NodePath("..")
 projectile_scene = ExtResource("9_smydo")
 
 [node name="DamageSounds" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_lrh7k")
+max_polyphony = 2
+script = ExtResource("10_k3yy0")
 
 [connection signal="state_entered" from="AI/StateChart/Root/Walking" to="AnimatedSprite3D" method="_on_walking_state_entered"]
 [connection signal="state_entered" from="AI/StateChart/Root/Shooting" to="AnimatedSprite3D" method="_on_shooting_state_entered"]
+[connection signal="on_damaged" from="Health/Health" to="DamageSounds" method="_on_health_on_damaged"]
 
 [editable path="AI"]

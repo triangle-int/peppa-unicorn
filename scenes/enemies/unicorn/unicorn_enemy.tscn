@@ -14,6 +14,8 @@
 
 [node name="UnicornEnemy" type="CharacterBody3D" node_paths=PackedStringArray("agent", "health")]
 script = ExtResource("1_e8lc6")
+speed = 10.0
+acceleration = 30.0
 agent = NodePath("NavigationAgent3D")
 health = NodePath("Health/Health")
 
@@ -49,3 +51,8 @@ start_health = 100
 script = ExtResource("8_sd0p6")
 movement = NodePath("..")
 projectile_scene = ExtResource("9_smydo")
+
+[connection signal="state_entered" from="AI/StateChart/Root/Walking" to="AnimatedSprite3D" method="_on_walking_state_entered"]
+[connection signal="state_entered" from="AI/StateChart/Root/Shooting" to="AnimatedSprite3D" method="_on_shooting_state_entered"]
+
+[editable path="AI"]

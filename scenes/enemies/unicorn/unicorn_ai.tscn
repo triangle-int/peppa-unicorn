@@ -6,19 +6,19 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_ybbys"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_lqjhl"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_wb1jr"]
-radius = 10.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_l5efy"]
+radius = 20.0
 
 [node name="UnicornAI" type="Node3D" node_paths=PackedStringArray("state_chart", "player_detection_area")]
 script = ExtResource("1_2b2bk")
 state_chart = NodePath("StateChart")
 player_detection_area = NodePath("PlayerDetectionArea")
-attack_range = 5.0
+attack_range = 15.0
 
 [node name="PlayerDetectionArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionArea"]
-shape = SubResource("SphereShape3D_wb1jr")
+shape = SubResource("SphereShape3D_l5efy")
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("2_72p4o")

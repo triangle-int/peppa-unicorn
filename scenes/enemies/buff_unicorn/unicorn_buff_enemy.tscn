@@ -12,6 +12,8 @@ radius = 0.7
 
 [node name="UnicornBuffEnemy" type="CharacterBody3D" node_paths=PackedStringArray("agent", "health")]
 script = ExtResource("1_1yff5")
+speed = 10.0
+acceleration = 50.0
 agent = NodePath("NavigationAgent3D")
 health = NodePath("Health/Health")
 

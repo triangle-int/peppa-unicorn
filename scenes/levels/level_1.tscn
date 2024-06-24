@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ddv6fqyhg5vra"]
+[gd_scene load_steps=29 format=3 uid="uid://ddv6fqyhg5vra"]
 
 [ext_resource type="PackedScene" uid="uid://cnop5virgojgf" path="res://scenes/slayer.tscn" id="1_v8avo"]
 [ext_resource type="Texture2D" uid="uid://dxvf28fhj52b6" path="res://textures/environment/cieling.png" id="3_onsd0"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://btbw0pm2ki35w" path="res://textures/environment/title.png" id="19_f5ceu"]
 [ext_resource type="PackedScene" uid="uid://fwqrtt1pvgod" path="res://scenes/environment/office_ceiling.tscn" id="20_8kj6r"]
 [ext_resource type="PackedScene" uid="uid://eep3ms5vae7t" path="res://scenes/environment/office_door.tscn" id="21_kxwsv"]
+[ext_resource type="Script" path="res://scenes/levels/NewSpawn.gd" id="22_5uhcj"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xclbc"]
 panorama = ExtResource("3_onsd0")
@@ -818,6 +819,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 2.5)
 
 [node name="HealthItem2" parent="Environment" instance=ExtResource("5_lafgm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 7, -20)
+
+[node name="NewSpawn" type="Node3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+script = ExtResource("22_5uhcj")
 
 [node name="Painting" parent="." instance=ExtResource("14_4xpyg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.9487, 3, -0.5)

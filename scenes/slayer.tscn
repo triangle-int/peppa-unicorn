@@ -63,7 +63,7 @@ one_shot = true
 [node name="Hook" type="Area3D" parent="Camera3D" node_paths=PackedStringArray("character")]
 script = ExtResource("8_fo5bn")
 character = NodePath("../..")
-speed = 20.0
+speed = 28.0
 unhook_distance = 5.0
 hook_angle = 15.0
 

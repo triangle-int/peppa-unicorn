@@ -16,8 +16,7 @@ extends CharacterBody3D
 
 @export var jump_height = 1.5
 
-@export var wall_jump_speed = 20.0
-@export var wall_jump_angle = 30.0
+@export var wall_jump_speed := Vector2(20, 10)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -51,11 +50,8 @@ func _physics_process(delta):
 	):
 		_wall_jump_done = true
 		var normal = get_wall_normal()
-		var jump_dir = normal.rotated(
-			normal.cross(Vector3.UP).normalized(), deg_to_rad(wall_jump_angle)
-		)
-		velocity.y = 0
-		velocity += jump_dir * wall_jump_speed
+		velocity.y = wall_jump_speed.y
+		velocity += normal * wall_jump_speed.x
 
 	# Applying friction
 	if is_on_floor():

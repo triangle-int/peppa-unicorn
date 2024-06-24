@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dlab0wd76kqkv"]
+
+[ext_resource type="Texture2D" uid="uid://dxvf28fhj52b6" path="res://textures/environment/cieling.png" id="1_p4t72"]
+
+[resource]
+albedo_texture = ExtResource("1_p4t72")
+uv1_scale = Vector3(0.05, 0.05, 0.05)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0

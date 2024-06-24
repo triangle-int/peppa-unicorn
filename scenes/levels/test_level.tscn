@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b20v3rei234bf"]
+[gd_scene load_steps=21 format=3 uid="uid://b20v3rei234bf"]
 
 [ext_resource type="PackedScene" uid="uid://cnop5virgojgf" path="res://scenes/slayer.tscn" id="1_kbm35"]
 [ext_resource type="PackedScene" uid="uid://mvrssal33hq2" path="res://scenes/environment/floor.tscn" id="2_gsdl0"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bduvsj300mv85" path="res://scenes/environment/bed.tscn" id="10_0qjfh"]
 [ext_resource type="PackedScene" uid="uid://c5wpdv2xdnc2q" path="res://scenes/environment/barrel.tscn" id="10_42snb"]
 [ext_resource type="PackedScene" uid="uid://67dvn3g62ato" path="res://scenes/environment/hook_target.tscn" id="15_k4llr"]
+[ext_resource type="PackedScene" uid="uid://bs6e3gslllni3" path="res://scenes/environment/short_wall.tscn" id="15_sl4gf"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xclbc"]
 panorama = ExtResource("4_uos00")
@@ -84,17 +85,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.25, -10)
 [node name="StartLevelRoom" type="Node3D" parent="Environment/NavigationRegion3D"]
 
 [node name="Wall" parent="Environment/NavigationRegion3D/StartLevelRoom" instance=ExtResource("6_rpow5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 2.5)
 
 [node name="Wall2" parent="Environment/NavigationRegion3D/StartLevelRoom" instance=ExtResource("6_rpow5")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, 2, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, 4, 0)
 
 [node name="Wall3" parent="Environment/NavigationRegion3D/StartLevelRoom" instance=ExtResource("6_rpow5")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 2, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 4, 0)
 
 [node name="Door" parent="Environment/NavigationRegion3D/StartLevelRoom" instance=ExtResource("7_1x4wm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2.5)
 always_open = true
+
+[node name="ShortWall" parent="Environment/NavigationRegion3D/StartLevelRoom" instance=ExtResource("15_sl4gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -2.5)
 
 [node name="LevelSwitchRoom" type="Node3D" parent="Environment/NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
@@ -107,19 +111,22 @@ key_id = "red_key"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
 
 [node name="Wall" parent="Environment/NavigationRegion3D/LevelSwitchRoom" instance=ExtResource("6_rpow5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2.5)
 
 [node name="Wall2" parent="Environment/NavigationRegion3D/LevelSwitchRoom" instance=ExtResource("6_rpow5")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 2, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 4, 0)
 
 [node name="Wall3" parent="Environment/NavigationRegion3D/LevelSwitchRoom" instance=ExtResource("6_rpow5")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, 2, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, 4, 0)
+
+[node name="ShortWall" parent="Environment/NavigationRegion3D/LevelSwitchRoom" instance=ExtResource("15_sl4gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 2.5)
 
 [node name="Wall" parent="Environment/NavigationRegion3D" instance=ExtResource("6_rpow5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -24)
 
 [node name="Wall3" parent="Environment/NavigationRegion3D" instance=ExtResource("6_rpow5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -24)
 
 [node name="Floor16" parent="Environment/NavigationRegion3D" instance=ExtResource("2_gsdl0")]
 
@@ -131,3 +138,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
 
 [node name="Floor19" parent="Environment/NavigationRegion3D" instance=ExtResource("2_gsdl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+
+[node name="ShortWall" parent="Environment/NavigationRegion3D" instance=ExtResource("15_sl4gf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -24)

@@ -1,7 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7wcpg8rqqcff"]
+[gd_scene load_steps=7 format=3 uid="uid://b7wcpg8rqqcff"]
 
 [ext_resource type="Script" path="res://scripts/environment/door.gd" id="1_lac1x"]
-[ext_resource type="PackedScene" uid="uid://dnold2k2m4yw8" path="res://scenes/environment/wall.tscn" id="2_o0eey"]
+[ext_resource type="Texture2D" uid="uid://0ffkw68p1bkj" path="res://textures/environment/wall.png" id="2_0y5yb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_puc66"]
+albedo_texture = ExtResource("2_0y5yb")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_jnwb2"]
+size = Vector3(4, 4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vetxk"]
+size = Vector3(4, 4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yos1b"]
 size = Vector3(6, 4, 6)
@@ -9,10 +21,18 @@ size = Vector3(6, 4, 6)
 [node name="Door" type="Node3D" node_paths=PackedStringArray("wall")]
 script = ExtResource("1_lac1x")
 open_position = Vector3(0, -5, 0)
-wall = NodePath("Wall")
+wall = NodePath("AnimatableBody3D")
 movement_speed = 10.0
 
-[node name="Wall" parent="." instance=ExtResource("2_o0eey")]
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D"]
+material_override = SubResource("StandardMaterial3D_puc66")
+mesh = SubResource("BoxMesh_jnwb2")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+shape = SubResource("BoxShape3D_vetxk")
 
 [node name="Area3D" type="Area3D" parent="."]
 

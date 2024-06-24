@@ -11,10 +11,12 @@ func _input(event: InputEvent):
 	panel.show()
 	get_tree().paused = true
 
+
 func _on_resume_pressed():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	panel.hide()
 	get_tree().paused = false
+
 
 func _on_restart_pressed():
 	get_tree().paused = false

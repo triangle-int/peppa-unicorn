@@ -5,6 +5,7 @@ extends Node3D
 
 var _affected_bodies: Array[CharacterBody3D]
 
+
 func deal_damage(_damage: int):
 	for body in _affected_bodies:
 		var offset = body.global_position - global_position
@@ -14,6 +15,7 @@ func deal_damage(_damage: int):
 
 	queue_free()
 
+
 func _on_area_3d_body_entered(body: Node3D):
 	var character = body as CharacterBody3D
 
@@ -21,6 +23,7 @@ func _on_area_3d_body_entered(body: Node3D):
 		return
 
 	_affected_bodies.push_back(body)
+
 
 func _on_area_3d_body_exited(body):
 	_affected_bodies.erase(body as CharacterBody3D)

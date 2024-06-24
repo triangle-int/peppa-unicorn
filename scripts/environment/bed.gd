@@ -11,6 +11,7 @@ var _jump_velocity: float
 func _ready():
 	_jump_velocity = sqrt(2 * gravity * jump_height)
 
+
 func _on_area_3d_body_entered(body):
 	body = body as CharacterBody3D
 

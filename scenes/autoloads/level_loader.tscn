@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/autoloads/level_loader.gd" id="1_6gt3n"]
 [ext_resource type="PackedScene" uid="uid://ddv6fqyhg5vra" path="res://scenes/levels/level_1.tscn" id="2_3p7fp"]
-[ext_resource type="PackedScene" uid="uid://cj2mgbi0fy0k4" path="res://scenes/levels/level_2.tscn" id="3_a5s6r"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_2.tscn" id="3_a5s6r"]
 [ext_resource type="PackedScene" uid="uid://cxfbrxtwmasse" path="res://scenes/levels/level_3.tscn" id="4_vj5gn"]
-[ext_resource type="PackedScene" uid="uid://bue2tivx1o02i" path="res://scenes/levels/titlescreen.tscn" id="5_k4jb6"]
+[ext_resource type="PackedScene" path="res://scenes/levels/titlescreen.tscn" id="5_k4jb6"]
 
 [node name="LevelLoader" type="Node"]
 script = ExtResource("1_6gt3n")

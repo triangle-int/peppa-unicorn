@@ -12,6 +12,8 @@ radius = 0.7
 
 [node name="UnicornBuffEnemy" type="CharacterBody3D" node_paths=PackedStringArray("agent", "health")]
 script = ExtResource("1_1yff5")
+speed = 8.0
+acceleration = 50.0
 agent = NodePath("NavigationAgent3D")
 health = NodePath("Health/Health")
 
@@ -28,6 +30,7 @@ texture = ExtResource("2_4vuoj")
 
 [node name="UniconBuffAI" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("3_mldvc")]
 movement = NodePath("..")
+charging_speed_modifier = 1.5
 
 [node name="Health" type="Node3D" parent="." node_paths=PackedStringArray("health", "movement")]
 script = ExtResource("3_grukh")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://coidy88ne36la"]
+
+[ext_resource type="PackedScene" uid="uid://ta74dvyvcwur" path="res://scenes/items/item.tscn" id="1_2dwti"]
+[ext_resource type="Texture2D" uid="uid://b3hapx8grs4vk" path="res://textures/items/health.png" id="2_u34x1"]
+[ext_resource type="Script" path="res://scripts/items/health_item.gd" id="3_fvps6"]
+
+[sub_resource type="Resource" id="Resource_mdswm"]
+script = ExtResource("3_fvps6")
+health = 50
+icon = ExtResource("2_u34x1")
+name = ""
+
+[node name="HealthItem" instance=ExtResource("1_2dwti")]
+info = SubResource("Resource_mdswm")
+
+[node name="Sprite3D" parent="." index="1"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+texture_filter = 0
+texture = ExtResource("2_u34x1")

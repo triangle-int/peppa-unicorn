@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkrm11hug3et1"]
+
+[ext_resource type="PackedScene" uid="uid://ta74dvyvcwur" path="res://scenes/items/item.tscn" id="1_yxoo1"]
+[ext_resource type="Texture2D" uid="uid://bjeqnbgsnt0ao" path="res://textures/items/ammo.png" id="2_2ywgt"]
+[ext_resource type="Script" path="res://scripts/items/weapon_item.gd" id="3_ckvea"]
+
+[sub_resource type="Resource" id="Resource_48uju"]
+script = ExtResource("3_ckvea")
+rounds = 10
+icon = ExtResource("2_2ywgt")
+name = ""
+
+[node name="AmmoItem" instance=ExtResource("1_yxoo1")]
+info = SubResource("Resource_48uju")
+
+[node name="Sprite3D" parent="." index="1"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+texture_filter = 0
+texture = ExtResource("2_2ywgt")

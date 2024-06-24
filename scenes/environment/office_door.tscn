@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://eep3ms5vae7t"]
+[gd_scene load_steps=16 format=3 uid="uid://eep3ms5vae7t"]
 
 [ext_resource type="Script" path="res://scripts/environment/office_door.gd" id="1_sbx6s"]
 [ext_resource type="Texture2D" uid="uid://dj8lvi7qxk58k" path="res://textures/environment/office_wall.png" id="2_ux60w"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bh5cgrjv5rrwm" path="res://audio/sounds/dialogue.mp3" id="4_2vsky"]
 [ext_resource type="AudioStream" uid="uid://cy1ixqcalf1vc" path="res://audio/music/intro.mp3" id="4_t055m"]
 [ext_resource type="AudioStream" uid="uid://btrypepxbe6ww" path="res://audio/music/after_intro.mp3" id="5_j6i52"]
+[ext_resource type="AudioStream" uid="uid://cfnbsr2k4t2w4" path="res://audio/music/loop1.mp3" id="6_34fdd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jnwb2"]
 size = Vector3(4, 4, 1)
@@ -25,6 +26,69 @@ size = Vector3(6, 4, 6)
 
 [sub_resource type="LabelSettings" id="LabelSettings_e7paq"]
 font_size = 21
+
+[sub_resource type="Animation" id="Animation_1d7io"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect/Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect/Label:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SweetHome:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_pwirp"]
 resource_name = "intro_dialogue"
@@ -119,69 +183,6 @@ tracks/6/keys = {
 "values": [-60.406, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_1d7io"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect/TextureRect:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ColorRect/Label:text")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [""]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ColorRect/Label:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("SweetHome:volume_db")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0hapc"]
 _data = {
 "RESET": SubResource("Animation_1d7io"),
@@ -222,6 +223,9 @@ stream = ExtResource("4_t055m")
 
 [node name="Reznya" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_j6i52")
+
+[node name="ReznyaPolnaya" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_34fdd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

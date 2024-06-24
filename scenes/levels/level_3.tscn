@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cxfbrxtwmasse"]
+[gd_scene load_steps=23 format=3 uid="uid://cxfbrxtwmasse"]
 
 [ext_resource type="PackedScene" uid="uid://cnop5virgojgf" path="res://scenes/slayer.tscn" id="1_3grow"]
 [ext_resource type="Texture2D" uid="uid://dxvf28fhj52b6" path="res://textures/environment/cieling.png" id="2_q67c7"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://67dvn3g62ato" path="res://scenes/environment/hook_target.tscn" id="14_qduhc"]
 [ext_resource type="PackedScene" uid="uid://coidy88ne36la" path="res://scenes/items/health_item.tscn" id="15_6inwr"]
 [ext_resource type="PackedScene" uid="uid://bkrm11hug3et1" path="res://scenes/items/ammo_item.tscn" id="16_w3a2w"]
+[ext_resource type="AudioStream" uid="uid://cfnbsr2k4t2w4" path="res://audio/music/loop1.mp3" id="18_rfymn"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xclbc"]
 panorama = ExtResource("2_q67c7")
@@ -440,3 +441,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 5, -12.5)
 
 [node name="AmmoItem2" parent="." instance=ExtResource("16_w3a2w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 9, 4)
+
+[node name="ReznyaPolnaya" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_rfymn")
+autoplay = true

@@ -13,6 +13,8 @@ func _ready():
 	_initial_position = wall.position
 	if not LevelLoader.intro_finished:
 		$AnimationPlayer.play("intro_dialogue")
+	else:
+		$ReznyaPolnaya.play()
 
 
 func _physics_process(delta: float):

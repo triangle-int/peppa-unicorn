@@ -13,7 +13,7 @@ uv1_world_triplanar = true
 texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ho3ak"]
-size = Vector3(64, 1, 64)
+size = Vector3(16, 1, 16)
 
 [node name="Ceiling" type="StaticBody3D"]
 

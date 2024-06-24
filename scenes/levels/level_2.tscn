@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cj2mgbi0fy0k4"]
+[gd_scene load_steps=20 format=3 uid="uid://cj2mgbi0fy0k4"]
 
 [ext_resource type="PackedScene" uid="uid://cnop5virgojgf" path="res://scenes/slayer.tscn" id="1_hd444"]
 [ext_resource type="PackedScene" uid="uid://ch7s8ag83jqg4" path="res://scenes/environment/quarter_floor.tscn" id="1_kjmk4"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bkrm11hug3et1" path="res://scenes/items/ammo_item.tscn" id="11_01py1"]
 [ext_resource type="PackedScene" uid="uid://xaln1kf4vds5" path="res://scenes/enemies/buff_unicorn/unicorn_buff_enemy.tscn" id="12_s2ejv"]
 [ext_resource type="PackedScene" uid="uid://s8kef0o0usau" path="res://scenes/enemies/unicorn/unicorn_enemy.tscn" id="13_wv6iw"]
+[ext_resource type="AudioStream" uid="uid://cfnbsr2k4t2w4" path="res://audio/music/loop1.mp3" id="15_bxlqt"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ro0ej"]
 panorama = ExtResource("2_1g6cp")
@@ -348,34 +349,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, -31.5)
 [node name="AmmoItem" parent="." instance=ExtResource("11_01py1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0.5, -27)
 
-[node name="UnicornBuffEnemy" parent="." instance=ExtResource("12_s2ejv")]
+[node name="UnicornBuffEnemy" parent="." groups=["enemies"] instance=ExtResource("12_s2ejv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1, -4.5)
 
-[node name="UnicornEnemy" parent="." instance=ExtResource("13_wv6iw")]
+[node name="UnicornEnemy" parent="." groups=["enemies"] instance=ExtResource("13_wv6iw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, -15.5)
 
-[node name="UnicornEnemy2" parent="." instance=ExtResource("13_wv6iw")]
+[node name="UnicornEnemy2" parent="." groups=["enemies"] instance=ExtResource("13_wv6iw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, -15.5)
 
-[node name="UnicornEnemy3" parent="." instance=ExtResource("13_wv6iw")]
+[node name="UnicornEnemy3" parent="." groups=["enemies"] instance=ExtResource("13_wv6iw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1, -16.5)
 
-[node name="UnicornEnemy4" parent="." instance=ExtResource("13_wv6iw")]
+[node name="UnicornEnemy4" parent="." groups=["enemies"] instance=ExtResource("13_wv6iw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, -18)
 
-[node name="UnicornEnemy5" parent="." instance=ExtResource("13_wv6iw")]
+[node name="UnicornEnemy5" parent="." groups=["enemies"] instance=ExtResource("13_wv6iw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 1, -18)
 
-[node name="UnicornBuffEnemy3" parent="." instance=ExtResource("12_s2ejv")]
+[node name="UnicornBuffEnemy3" parent="." groups=["enemies"] instance=ExtResource("12_s2ejv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 1, -26.5)
 
-[node name="UnicornEnemy7" parent="." instance=ExtResource("13_wv6iw")]
+[node name="UnicornEnemy7" parent="." groups=["enemies"] instance=ExtResource("13_wv6iw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -29.5)
 
-[node name="UnicornBuffEnemy5" parent="." instance=ExtResource("12_s2ejv")]
+[node name="UnicornBuffEnemy5" parent="." groups=["enemies"] instance=ExtResource("12_s2ejv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 1, -5.5)
 
-[node name="UnicornBuffEnemy6" parent="." instance=ExtResource("12_s2ejv")]
+[node name="UnicornBuffEnemy6" parent="." groups=["enemies"] instance=ExtResource("12_s2ejv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 1, -7.5)
 
 [node name="AmmoItem3" parent="." instance=ExtResource("11_01py1")]
@@ -389,3 +390,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 0.5, -27)
 
 [node name="AmmoItem4" parent="." instance=ExtResource("11_01py1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, -33)
+
+[node name="ReznyaPolnaya" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_bxlqt")
+autoplay = true

@@ -630,6 +630,7 @@ finish_door = true
 
 [node name="LevelSwitchTrigger" parent="Environment/NavigationRegion3D/LevelSwitchRoom" instance=ExtResource("15_tp3f2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 47)
+target_level = 1
 
 [node name="Wall2" parent="Environment/NavigationRegion3D/LevelSwitchRoom" instance=ExtResource("13_kirdt")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 4, 49)

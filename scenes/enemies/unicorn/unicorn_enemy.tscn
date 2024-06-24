@@ -52,6 +52,8 @@ script = ExtResource("8_sd0p6")
 movement = NodePath("..")
 projectile_scene = ExtResource("9_smydo")
 
+[node name="DamageSounds" type="AudioStreamPlayer3D" parent="."]
+
 [connection signal="state_entered" from="AI/StateChart/Root/Walking" to="AnimatedSprite3D" method="_on_walking_state_entered"]
 [connection signal="state_entered" from="AI/StateChart/Root/Shooting" to="AnimatedSprite3D" method="_on_shooting_state_entered"]
 

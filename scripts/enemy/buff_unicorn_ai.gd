@@ -65,11 +65,13 @@ func _attack():
 
 
 func _on_normal_state_entered():
+	$"../Sprite3D".modulate = Color.WHITE
 	await get_tree().create_timer(charging_cooldown).timeout
 	state_chart.send_event("start_charging")
 
 
 func _on_charging_state_entered():
+	$"../Sprite3D".modulate = Color.ORANGE_RED
 	movement.speed *= charging_speed_modifier
 	await get_tree().create_timer(charging_time).timeout
 	movement.speed /= charging_speed_modifier

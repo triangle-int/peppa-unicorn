@@ -3,6 +3,8 @@ extends Node
 
 signal on_died
 signal on_health_updated(health: int)
+signal on_damaged(amount: int)
+
 
 @export var start_health: int
 
@@ -30,3 +32,4 @@ func deal_damage(damage: int):
 		return
 
 	on_health_updated.emit(health)
+	on_damaged.emit(damage)

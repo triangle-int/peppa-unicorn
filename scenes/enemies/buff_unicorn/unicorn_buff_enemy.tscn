@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://xaln1kf4vds5"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy_movement.gd" id="1_1yff5"]
+[ext_resource type="Texture2D" uid="uid://5fvban77op5k" path="res://textures/enemies/buff_unicorn/buff_unicorn.png" id="2_4vuoj"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_health.gd" id="3_grukh"]
+[ext_resource type="PackedScene" uid="uid://qyqvxcg44x64" path="res://scenes/enemies/buff_unicorn/unicon_buff_ai.tscn" id="3_mldvc"]
+[ext_resource type="PackedScene" uid="uid://bqkqo3vckdne4" path="res://scenes/effects/damage_particles.tscn" id="4_0t0ic"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="5_kad0j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mlqaa"]
+radius = 0.7
+
+[node name="UnicornBuffEnemy" type="CharacterBody3D" node_paths=PackedStringArray("agent", "health")]
+script = ExtResource("1_1yff5")
+agent = NodePath("NavigationAgent3D")
+health = NodePath("Health/Health")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_mlqaa")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.214, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("2_4vuoj")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="UniconBuffAI" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("3_mldvc")]
+movement = NodePath("..")
+
+[node name="Health" type="Node3D" parent="." node_paths=PackedStringArray("health", "movement")]
+script = ExtResource("3_grukh")
+health = NodePath("Health")
+movement = NodePath("..")
+damage_particles = ExtResource("4_0t0ic")
+
+[node name="Health" type="Node" parent="Health"]
+script = ExtResource("5_kad0j")
+start_health = 100

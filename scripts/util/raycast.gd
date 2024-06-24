@@ -33,3 +33,17 @@ static func cast(
 		return null
 
 	return HitInfo.new(transformed, result)
+
+
+static func is_player_in_sight(source: Node3D, player: PlayerMovement) -> bool:
+	var hit = cast(
+		source,
+		source.global_position,
+		player.global_position,
+		func(obj): return obj as PlayerMovement
+	)
+
+	if hit == null:
+		return false
+
+	return hit.collider == player

@@ -1,0 +1,51 @@
+[gd_scene load_steps=11 format=3 uid="uid://s8kef0o0usau"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy_movement.gd" id="1_e8lc6"]
+[ext_resource type="SpriteFrames" uid="uid://1o1vco0b4vjx" path="res://textures/enemies/unicorn/unicorn_animation.tres" id="2_7uj0q"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_animation.gd" id="3_1urbh"]
+[ext_resource type="PackedScene" uid="uid://br0d2gl2dqtow" path="res://scenes/enemies/unicorn/unicorn_ai.tscn" id="4_dwvm3"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_health.gd" id="5_h4je2"]
+[ext_resource type="PackedScene" uid="uid://bqkqo3vckdne4" path="res://scenes/effects/damage_particles.tscn" id="6_v33ur"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="7_tifvw"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_weapon.gd" id="8_sd0p6"]
+[ext_resource type="PackedScene" uid="uid://eld0sr7x5gik" path="res://scenes/projectile.tscn" id="9_smydo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gucsi"]
+
+[node name="UnicornEnemy" type="CharacterBody3D" node_paths=PackedStringArray("agent", "health")]
+script = ExtResource("1_e8lc6")
+agent = NodePath("NavigationAgent3D")
+health = NodePath("Health/Health")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_gucsi")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.213777, 0)
+billboard = 2
+double_sided = false
+texture_filter = 0
+sprite_frames = ExtResource("2_7uj0q")
+animation = &"idle"
+script = ExtResource("3_1urbh")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="AI" parent="." node_paths=PackedStringArray("movement", "weapon") instance=ExtResource("4_dwvm3")]
+movement = NodePath("..")
+weapon = NodePath("../Weapon")
+
+[node name="Health" type="Node3D" parent="." node_paths=PackedStringArray("health", "movement")]
+script = ExtResource("5_h4je2")
+health = NodePath("Health")
+movement = NodePath("..")
+damage_particles = ExtResource("6_v33ur")
+
+[node name="Health" type="Node" parent="Health"]
+script = ExtResource("7_tifvw")
+start_health = 100
+
+[node name="Weapon" type="Node3D" parent="." node_paths=PackedStringArray("movement")]
+script = ExtResource("8_sd0p6")
+movement = NodePath("..")
+projectile_scene = ExtResource("9_smydo")

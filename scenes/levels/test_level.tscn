@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cnop5virgojgf" path="res://scenes/slayer.tscn" id="1_kbm35"]
 [ext_resource type="PackedScene" uid="uid://mvrssal33hq2" path="res://scenes/environment/floor.tscn" id="2_gsdl0"]
-[ext_resource type="PackedScene" uid="uid://s8kef0o0usau" path="res://scenes/enemies/regular_enemy.tscn" id="2_qxrn4"]
+[ext_resource type="PackedScene" uid="uid://xaln1kf4vds5" path="res://scenes/enemies/buff_unicorn/unicorn_buff_enemy.tscn" id="3_1h7w8"]
+[ext_resource type="PackedScene" uid="uid://s8kef0o0usau" path="res://scenes/enemies/unicorn/unicorn_enemy.tscn" id="4_112ox"]
 [ext_resource type="PackedScene" uid="uid://ta74dvyvcwur" path="res://scenes/item.tscn" id="4_ubhjr"]
 [ext_resource type="Texture2D" uid="uid://dxvf28fhj52b6" path="res://textures/environment/cieling.png" id="4_uos00"]
 [ext_resource type="PackedScene" uid="uid://thafqip6h08" path="res://scenes/environment/level_switch_trigger.tscn" id="5_84iqa"]
@@ -41,11 +42,14 @@ agent_height = 2.0
 [node name="Slayer" parent="." instance=ExtResource("1_kbm35")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.25)
 
-[node name="Enemy" parent="." instance=ExtResource("2_qxrn4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -36)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pxyiw")
+
+[node name="UnicornBuffEnemy" parent="." instance=ExtResource("3_1h7w8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -36)
+
+[node name="UnicornEnemy" parent="." instance=ExtResource("4_112ox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -16)
 
 [node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_ywngn")]
 player = NodePath("../Slayer")

@@ -1,17 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://br0d2gl2dqtow"]
 
-[ext_resource type="Script" path="res://scripts/enemy/regular_ai.gd" id="1_rkf8j"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_phpra"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_uedw6"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_h0ypt"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_1gnjm"]
+[ext_resource type="Script" path="res://scripts/enemy/unicorn_ai.gd" id="1_2b2bk"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_72p4o"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_n7s76"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_ybbys"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_lqjhl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wb1jr"]
 radius = 10.0
 
-[node name="RegularAI" type="Node3D" node_paths=PackedStringArray("state_chart")]
-script = ExtResource("1_rkf8j")
+[node name="UnicornAI" type="Node3D" node_paths=PackedStringArray("state_chart", "player_detection_area")]
+script = ExtResource("1_2b2bk")
 state_chart = NodePath("StateChart")
+player_detection_area = NodePath("PlayerDetectionArea")
 attack_range = 5.0
 
 [node name="PlayerDetectionArea" type="Area3D" parent="."]
@@ -20,35 +21,35 @@ attack_range = 5.0
 shape = SubResource("SphereShape3D_wb1jr")
 
 [node name="StateChart" type="Node" parent="."]
-script = ExtResource("2_phpra")
+script = ExtResource("2_72p4o")
 
 [node name="Root" type="Node" parent="StateChart"]
-script = ExtResource("3_uedw6")
+script = ExtResource("3_n7s76")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateChart/Root"]
-script = ExtResource("4_h0ypt")
+script = ExtResource("4_ybbys")
 
 [node name="PlayerInSight" type="Node" parent="StateChart/Root/Idle"]
-script = ExtResource("5_1gnjm")
+script = ExtResource("5_lqjhl")
 to = NodePath("../../Walking")
 event = &"player_in_sight"
 delay_in_seconds = "0.0"
 
 [node name="Walking" type="Node" parent="StateChart/Root"]
-script = ExtResource("4_h0ypt")
+script = ExtResource("4_ybbys")
 
 [node name="PlayerInRange" type="Node" parent="StateChart/Root/Walking"]
-script = ExtResource("5_1gnjm")
+script = ExtResource("5_lqjhl")
 to = NodePath("../../Shooting")
 event = &"player_in_range"
 delay_in_seconds = "0.0"
 
 [node name="Shooting" type="Node" parent="StateChart/Root"]
-script = ExtResource("4_h0ypt")
+script = ExtResource("4_ybbys")
 
 [node name="FinishedShooting" type="Node" parent="StateChart/Root/Shooting"]
-script = ExtResource("5_1gnjm")
+script = ExtResource("5_lqjhl")
 to = NodePath("../../Walking")
 event = &"finished_shooting"
 delay_in_seconds = "0.0"

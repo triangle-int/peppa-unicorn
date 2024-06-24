@@ -1,6 +1,7 @@
 extends Node
 
 @export var key_id: String
+@export var finish_door: bool
 @export var always_open: bool
 @export var open_position: Vector3
 @export var wall: Node3D
@@ -24,11 +25,15 @@ func _on_area_3d_body_entered(body: Node3D):
 
 	if movement == null:
 		return
-
-	if !always_open and !movement.player.keys.has_key(key_id):
-		return
-
-	_player_in_area = true
+	
+	if finish_door:
+		var enemies = get_tree().get_nodes_in_group("enemies")
+		if len(enemies) == 0:
+			_player_in_area = true
+	elif always_open:
+		_player_in_area = true
+	elif movement.player.keys.has_key(key_id):
+		_player_in_area = true
 
 
 func _on_area_3d_body_exited(body):

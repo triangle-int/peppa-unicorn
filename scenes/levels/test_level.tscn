@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://mvrssal33hq2" path="res://scenes/environment/floor.tscn" id="2_gsdl0"]
 [ext_resource type="PackedScene" uid="uid://xaln1kf4vds5" path="res://scenes/enemies/buff_unicorn/unicorn_buff_enemy.tscn" id="3_1h7w8"]
 [ext_resource type="PackedScene" uid="uid://s8kef0o0usau" path="res://scenes/enemies/unicorn/unicorn_enemy.tscn" id="4_112ox"]
-[ext_resource type="PackedScene" uid="uid://ta74dvyvcwur" path="res://scenes/item.tscn" id="4_ubhjr"]
+[ext_resource type="PackedScene" uid="uid://ta74dvyvcwur" path="res://scenes/items/item.tscn" id="4_ubhjr"]
 [ext_resource type="Texture2D" uid="uid://dxvf28fhj52b6" path="res://textures/environment/cieling.png" id="4_uos00"]
 [ext_resource type="PackedScene" uid="uid://thafqip6h08" path="res://scenes/environment/level_switch_trigger.tscn" id="5_84iqa"]
 [ext_resource type="PackedScene" uid="uid://c0ob7fqfx2cb6" path="res://scenes/hud.tscn" id="5_ywngn"]

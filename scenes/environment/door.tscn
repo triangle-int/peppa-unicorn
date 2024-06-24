@@ -1,16 +1,17 @@
 [gd_scene load_steps=7 format=3 uid="uid://b7wcpg8rqqcff"]
 
 [ext_resource type="Script" path="res://scripts/environment/door.gd" id="1_lac1x"]
-[ext_resource type="Texture2D" uid="uid://0ffkw68p1bkj" path="res://textures/environment/wall.png" id="2_0y5yb"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_puc66"]
-albedo_texture = ExtResource("2_0y5yb")
-uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_triplanar = true
-texture_filter = 0
+[ext_resource type="Texture2D" uid="uid://cdokyac6oen0x" path="res://textures/environment/door.png" id="2_dd77c"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_jnwb2"]
 size = Vector3(4, 4, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ckdn"]
+albedo_texture = ExtResource("2_dd77c")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_offset = Vector3(0.5, 0.5, 0)
+uv1_triplanar = true
+texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vetxk"]
 size = Vector3(4, 4, 1)
@@ -27,9 +28,9 @@ movement_speed = 10.0
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D"]
-material_override = SubResource("StandardMaterial3D_puc66")
 mesh = SubResource("BoxMesh_jnwb2")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_8ckdn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
 shape = SubResource("BoxShape3D_vetxk")

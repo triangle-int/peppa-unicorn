@@ -1,3 +1,4 @@
+class_name WeaponItemInfo
 extends ItemInfo
 
 @export var rounds: int = 10

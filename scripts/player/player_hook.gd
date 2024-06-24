@@ -30,7 +30,8 @@ func _check_target(target: HookTarget):
 func _process(delta):
 	var targets = all_targets.filter(_check_target)
 	targets.sort_custom(_compare)
-
+	
+	var flag = false
 	for target in targets:
 		var target_visible = (
 			RayCast.cast(
@@ -42,6 +43,7 @@ func _process(delta):
 		if !target_visible:
 			continue
 		
+		flag = true
 		if _selected_target != target:
 			if _selected_target != null:
 				_selected_target.unselect()
@@ -49,6 +51,9 @@ func _process(delta):
 			_selected_target.select()
 		break
 	
+	if _selected_target != null and not flag:
+		_selected_target.unselect()
+		_selected_target = null
 
 
 func _input(event):

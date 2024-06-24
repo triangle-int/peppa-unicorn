@@ -7,6 +7,7 @@ func _on_activation_area_body_entered(body):
 	if player != null:
 		var hook = player.player.hook
 		hook.all_targets.push_back(self)
+		unselect()
 
 
 func _on_activation_area_body_exited(body):
@@ -14,6 +15,7 @@ func _on_activation_area_body_exited(body):
 	if player != null:
 		var hook = player.player.hook
 		hook.all_targets.erase(self)
+		unselect()
 
 
 func select():

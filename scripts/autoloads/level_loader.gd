@@ -3,6 +3,7 @@ extends Node
 @export var levels: Array[PackedScene]
 
 var _last_level: int
+var intro_finished: bool = false
 
 
 func load_level(level_index: int):

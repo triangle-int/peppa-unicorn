@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnub0s764yr6l"]
+
+[ext_resource type="PackedScene" uid="uid://dnold2k2m4yw8" path="res://scenes/environment/wall.tscn" id="1_3ku1c"]
+[ext_resource type="Texture2D" uid="uid://dj8lvi7qxk58k" path="res://textures/environment/office_wall.png" id="2_nqtif"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ro7r0"]
+size = Vector3(4, 4, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ocx43"]
+albedo_texture = ExtResource("2_nqtif")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vxbom"]
+size = Vector3(4, 4, 1)
+
+[node name="ShortWall" instance=ExtResource("1_3ku1c")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+material_override = null
+mesh = SubResource("BoxMesh_ro7r0")
+surface_material_override/0 = SubResource("StandardMaterial3D_ocx43")
+
+[node name="CollisionShape3D" parent="." index="1"]
+shape = SubResource("BoxShape3D_vxbom")

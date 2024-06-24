@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://xaln1kf4vds5"]
+[gd_scene load_steps=11 format=3 uid="uid://xaln1kf4vds5"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy_movement.gd" id="1_1yff5"]
-[ext_resource type="Texture2D" uid="uid://5fvban77op5k" path="res://textures/enemies/buff_unicorn/buff_unicorn.png" id="2_4vuoj"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_health.gd" id="3_grukh"]
+[ext_resource type="Script" path="res://scripts/enemy/buff_enemy_animation.gd" id="3_hpeq0"]
 [ext_resource type="PackedScene" uid="uid://qyqvxcg44x64" path="res://scenes/enemies/buff_unicorn/unicon_buff_ai.tscn" id="3_mldvc"]
 [ext_resource type="PackedScene" uid="uid://bqkqo3vckdne4" path="res://scenes/effects/damage_particles.tscn" id="4_0t0ic"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="5_kad0j"]
+[ext_resource type="AudioStream" uid="uid://dcwk2ml2vhpko" path="res://audio/sounds/enemy_damage.tres" id="7_62ia1"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy_damage_sound.gd" id="8_24b7v"]
+[ext_resource type="SpriteFrames" uid="uid://6mfordqocp2d" path="res://textures/enemies/buff_unicorn/buff_unicorn_animation.tres" id="10_txaps"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mlqaa"]
 radius = 0.7
@@ -20,13 +23,16 @@ health = NodePath("Health/Health")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_mlqaa")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.214, 0)
 billboard = 2
+double_sided = false
 texture_filter = 0
-texture = ExtResource("2_4vuoj")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+sprite_frames = ExtResource("10_txaps")
+animation = &"walk"
+script = ExtResource("3_hpeq0")
 
 [node name="UniconBuffAI" parent="." node_paths=PackedStringArray("movement") instance=ExtResource("3_mldvc")]
 movement = NodePath("..")
@@ -41,3 +47,14 @@ damage_particles = ExtResource("4_0t0ic")
 [node name="Health" type="Node" parent="Health"]
 script = ExtResource("5_kad0j")
 start_health = 100
+
+[node name="DamageSounds" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_62ia1")
+max_polyphony = 2
+script = ExtResource("8_24b7v")
+
+[connection signal="on_attack" from="UniconBuffAI" to="AnimatedSprite3D" method="_on_attack"]
+[connection signal="state_entered" from="UniconBuffAI/StateChart/Root/Attacking" to="AnimatedSprite3D" method="_on_attacking_state_entered"]
+[connection signal="on_damaged" from="Health/Health" to="DamageSounds" method="_on_health_on_damaged"]
+
+[editable path="UniconBuffAI"]

@@ -1,0 +1,63 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://6mfordqocp2d"]
+
+[ext_resource type="Texture2D" uid="uid://5fvban77op5k" path="res://textures/enemies/buff_unicorn/buff_unicorn.png" id="1_bf2pu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krjoj"]
+atlas = ExtResource("1_bf2pu")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou0hb"]
+atlas = ExtResource("1_bf2pu")
+region = Rect2(0, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv0tw"]
+atlas = ExtResource("1_bf2pu")
+region = Rect2(80, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3uh8"]
+atlas = ExtResource("1_bf2pu")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17n0x"]
+atlas = ExtResource("1_bf2pu")
+region = Rect2(0, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qne0b"]
+atlas = ExtResource("1_bf2pu")
+region = Rect2(80, 160, 80, 80)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krjoj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ou0hb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv0tw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3uh8")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17n0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qne0b")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]

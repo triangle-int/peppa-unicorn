@@ -57,6 +57,7 @@ func _attack():
 
 	var damage = charging_damage if $StateChart/Root/Attacking/Charging.active else attack_damage
 	player_detected.deal_damage(damage)
+	on_attack.emit()
 	state_chart.send_event("stop_charging")
 
 	attack_on_cooldown = true
@@ -65,13 +66,13 @@ func _attack():
 
 
 func _on_normal_state_entered():
-	$"../Sprite3D".modulate = Color.WHITE
+	$"../AnimatedSprite3D".modulate = Color.WHITE
 	await get_tree().create_timer(charging_cooldown).timeout
 	state_chart.send_event("start_charging")
 
 
 func _on_charging_state_entered():
-	$"../Sprite3D".modulate = Color.ORANGE_RED
+	$"../AnimatedSprite3D".modulate = Color.ORANGE_RED
 	movement.speed *= charging_speed_modifier
 	await get_tree().create_timer(charging_time).timeout
 	movement.speed /= charging_speed_modifier

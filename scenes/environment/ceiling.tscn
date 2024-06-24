@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://didayi56jsqc0"]
+
+[ext_resource type="Material" uid="uid://dlab0wd76kqkv" path="res://materials/ceiling_material.tres" id="1_kmuiw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4jxs4"]
+size = Vector3(64, 1, 64)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ho3ak"]
+size = Vector3(64, 1, 64)
+
+[node name="Ceiling" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_4jxs4")
+surface_material_override/0 = ExtResource("1_kmuiw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_ho3ak")

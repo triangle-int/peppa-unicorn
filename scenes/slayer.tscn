@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cnop5virgojgf"]
+[gd_scene load_steps=13 format=3 uid="uid://cnop5virgojgf"]
 
 [ext_resource type="Texture2D" uid="uid://c5tuiy30uk3xe" path="res://icon.svg" id="1_ephvi"]
 [ext_resource type="Script" path="res://scripts/player/player_movement.gd" id="1_ng5jo"]
@@ -14,9 +14,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2imdl"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_67x8a"]
-radius = 20.0
-
 [node name="Slayer" type="CharacterBody3D" node_paths=PackedStringArray("player", "hook")]
 script = ExtResource("1_ng5jo")
 player = NodePath("Player")
@@ -27,9 +24,10 @@ jump_height = 2.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_2imdl")
 
-[node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("weapon", "health", "keys")]
+[node name="Player" type="Node3D" parent="." node_paths=PackedStringArray("hook", "weapon", "health", "keys")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("2_n5v5e")
+hook = NodePath("../Camera3D/Hook")
 weapon = NodePath("../Camera3D/ShootingPoint")
 health = NodePath("../Health/Health")
 keys = NodePath("../Keys")
@@ -60,30 +58,34 @@ one_shot = true
 [node name="ReloadTimer" type="Timer" parent="Camera3D/ShootingPoint"]
 one_shot = true
 
-[node name="Hook" type="Area3D" parent="Camera3D" node_paths=PackedStringArray("character")]
+[node name="Hook" type="Node3D" parent="Camera3D" node_paths=PackedStringArray("character")]
 script = ExtResource("8_fo5bn")
 character = NodePath("../..")
-speed = 20.0
+speed = 28.0
 unhook_distance = 5.0
 hook_angle = 15.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/Hook"]
-shape = SubResource("SphereShape3D_67x8a")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 pixel_size = 0.005
 texture = ExtResource("1_ephvi")
 
-[node name="WeaponDisplay" type="AnimatedSprite2D" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="WeaponDisplay" type="AnimatedSprite2D" parent="MarginContainer"]
 texture_filter = 1
-position = Vector2(576, 401)
+position = Vector2(0, -247)
 scale = Vector2(4.5, 4.5)
 sprite_frames = ExtResource("6_a4v0s")
 animation = &"idle"
 script = ExtResource("7_v8atl")
 
-[connection signal="on_reload" from="Camera3D/ShootingPoint" to="WeaponDisplay" method="_on_shooting_point_on_reload"]
-[connection signal="on_shoot" from="Camera3D/ShootingPoint" to="WeaponDisplay" method="_on_shooting_point_on_shoot"]
-[connection signal="body_entered" from="Camera3D/Hook" to="Camera3D/Hook" method="_on_body_entered"]
-[connection signal="body_exited" from="Camera3D/Hook" to="Camera3D/Hook" method="_on_body_exited"]
+[connection signal="on_reload" from="Camera3D/ShootingPoint" to="MarginContainer/WeaponDisplay" method="_on_shooting_point_on_reload"]
+[connection signal="on_shoot" from="Camera3D/ShootingPoint" to="MarginContainer/WeaponDisplay" method="_on_shooting_point_on_shoot"]

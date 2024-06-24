@@ -14,6 +14,14 @@ func _ready():
 	on_health_updated.emit(health)
 
 
+func heal(amount: int):
+	health += amount
+	if health > start_health:
+		health = start_health
+	
+	on_health_updated.emit(health)
+
+
 func deal_damage(damage: int):
 	health -= damage
 

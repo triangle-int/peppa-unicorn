@@ -6,22 +6,9 @@ extends Node3D
 @export var unhook_distance: float
 @export var hook_angle: float
 
-var _all_targets: Array[HookTarget]
+var all_targets: Array[HookTarget]
+var _selected_target: HookTarget
 var _current_target: HookTarget
-
-
-func _on_body_entered(body: Node3D):
-	if body as HookTarget == null:
-		return
-
-	_all_targets.push_back(body)
-
-
-func _on_body_exited(body: Node3D):
-	if body as HookTarget == null:
-		return
-
-	_all_targets.erase(body)
 
 
 func _compare(_target1: HookTarget, _target2: HookTarget) -> bool:
@@ -40,24 +27,39 @@ func _check_target(target: HookTarget):
 	)
 
 
+func _process(delta):
+	var targets = all_targets.filter(_check_target)
+	targets.sort_custom(_compare)
+	
+	var flag = false
+	for target in targets:
+		var target_visible = (
+			RayCast.cast(
+				self, global_position, target.global_position, func(h): return h as HookTarget
+			)
+			!= null
+		)
+
+		if !target_visible:
+			continue
+		
+		flag = true
+		if _selected_target != target:
+			if _selected_target != null:
+				_selected_target.unselect()
+			_selected_target = target
+			_selected_target.select()
+		break
+	
+	if _selected_target != null and not flag:
+		_selected_target.unselect()
+		_selected_target = null
+
+
 func _input(event):
 	if event.is_action_pressed("hook"):
-		var targets = _all_targets.filter(_check_target)
-		targets.sort_custom(_compare)
+		_current_target = _selected_target
 
-		for target in targets:
-			var target_visible = (
-				RayCast.cast(
-					self, global_position, target.global_position, func(h): return h as HookTarget
-				)
-				!= null
-			)
-
-			if !target_visible:
-				continue
-
-			_current_target = target
-			break
 	if event.is_action_released("hook"):
 		_current_target = null
 

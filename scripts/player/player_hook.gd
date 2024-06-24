@@ -40,35 +40,26 @@ func _check_target(target: HookTarget):
 	)
 
 
-func _process(_delta: float):
-	if (
-		Input.is_action_pressed("move_forward")
-		or Input.is_action_pressed("move_backwards")
-		or Input.is_action_pressed("move_left")
-		or Input.is_action_pressed("move_right")
-	):
-		_current_target = null
-		return
+func _input(event):
+	if event.is_action_pressed("hook"):
+		var targets = _all_targets.filter(_check_target)
+		targets.sort_custom(_compare)
 
-	if !Input.is_action_just_pressed("hook"):
-		return
-
-	var targets = _all_targets.filter(_check_target)
-	targets.sort_custom(_compare)
-
-	for target in targets:
-		var target_visible = (
-			RayCast.cast(
-				self, global_position, target.global_position, func(h): return h as HookTarget
+		for target in targets:
+			var target_visible = (
+				RayCast.cast(
+					self, global_position, target.global_position, func(h): return h as HookTarget
+				)
+				!= null
 			)
-			!= null
-		)
 
-		if !target_visible:
-			continue
+			if !target_visible:
+				continue
 
-		_current_target = target
-		break
+			_current_target = target
+			break
+	if event.is_action_released("hook"):
+		_current_target = null
 
 
 func _physics_process(_delta: float):

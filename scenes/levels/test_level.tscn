@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b20v3rei234bf"]
+[gd_scene load_steps=22 format=3 uid="uid://b20v3rei234bf"]
 
 [ext_resource type="PackedScene" uid="uid://cnop5virgojgf" path="res://scenes/slayer.tscn" id="1_kbm35"]
 [ext_resource type="PackedScene" uid="uid://mvrssal33hq2" path="res://scenes/environment/floor.tscn" id="2_gsdl0"]

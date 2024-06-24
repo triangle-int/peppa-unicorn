@@ -11,14 +11,15 @@ var camera_x = 0
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			return
-		
+
 		var input_x = -event.relative.x * sensitivity_x
 		$"..".rotate_y(deg_to_rad(input_x))
-		
+
 		var input_y = -event.relative.y * sensitivity_y
 		if camera_x + input_y < max_angle and camera_x + input_y > min_angle:
 			camera_x += input_y

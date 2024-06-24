@@ -1,7 +1,7 @@
 class_name EnemyWeapon
 extends Node3D
 
-signal finished_shooting()
+signal finished_shooting
 
 @export var movement: EnemyMovement
 @export var projectile_scene: PackedScene

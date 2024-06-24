@@ -10,6 +10,7 @@ var direction: Vector3
 var creator: Object
 var lived: float = 0.0
 
+
 func _on_area_3d_body_entered(body: Object):
 	if body == creator:
 		return
@@ -20,6 +21,7 @@ func _on_area_3d_body_entered(body: Object):
 
 	body.deal_damage(damage)
 	queue_free()
+
 
 func _physics_process(delta: float):
 	lived += delta
